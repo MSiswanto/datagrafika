@@ -38,7 +38,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Judul Halaman
-st.markdown("<div class='main-title'>👨‍💻 My Data Science Portfolio</div>", unsafe_allow_html=True)
+st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", unsafe_allow_html=True)
 st.markdown("<div class='subtitle'>Explore my projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)
 
 # Menu Navigasi

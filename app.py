@@ -44,7 +44,6 @@ st.markdown("<div class='subtitle'>Explore my projects and latest insights in Da
 # Menu Navigasi
 menu = st.sidebar.radio("Navigasi", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
 
-
 # Halaman Home
 if menu == "🏠 Home":
     st.subheader("Selamat datang di portofolio saya!")
@@ -98,24 +97,29 @@ elif menu == "📰 Blog":
     """)
 
 # Halaman Kontak
-elif menu == "📞 Kontak":
-    #st.title("📞 Kontak Kami")
-    st.subheader("📞 Kontak Kami")
+elif menu == "📞 Contact":
+    st.title("📞 Contact Us")
+    st.markdown("Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kontak di bawah ini:")
+
+    # Bagian Informasi Kontak
     st.markdown("""
-    Terima kasih telah mengunjungi portofolio kami.  
-    Jangan ragu untuk menghubungi saya melalui saluran berikut:
-
-    - 📧 Email: [msiswanto@gmail.com](mailto:msiswanto@gmail.com)
-    - 💼 LinkedIn: [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)
-    - 🐙 GitHub: [github.com/MSiswanto](https://github.com/MSiswanto)
-    - 🌐 Website: [meilana.dev](https://https://grafika.streamlit.app/)
+    **📧 Email:** [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
+    **💼 LinkedIn:** [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
+    **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto)  
     """)
-with st.form("contact_form"):
-    st.text_input("Nama")
-    st.text_input("Email")
-    st.text_area("Pesan")
-    submitted = st.form_submit_button("Kirim")
-    if submitted:
-        st.success("✅ Pesan berhasil dikirim! (simulasi)")
 
+    st.markdown("---")
 
+    # Formulir Kontak dengan layout lebih sempit
+    st.subheader("📬 Form to Contact (simulasi)")
+    col1, col2, col3 = st.columns([1, 2, 1])  # kolom tengah lebar, sisi kiri-kanan kosong
+
+    with col2:
+        with st.form("contact_form"):
+            name = st.text_input("Name")
+            email = st.text_input("Email")
+            message = st.text_area("Message")
+
+            submitted = st.form_submit_button("Send Message")
+            if submitted:
+                st.success("✅ Terima kasih! Pesan Anda telah diterima (simulasi).")

@@ -73,7 +73,7 @@ elif menu == "📂 Projects":
         st.markdown("<div class='card'>", unsafe_allow_html=True)
         st.markdown("### 🎓 Dropout Prediction")
         st.write("Model machine learning untuk memprediksi risiko mahasiswa dropout berdasarkan data akademik.")
-        st.link_button("Lihat Proyek", "https://studentdropout-prediction.streamlit.app/")
+        st.link_button("Lihat Proyek", "https://dropout-prediction-detection.streamlit.app/")
         st.markdown("</div>", unsafe_allow_html=True)
 
     with col2:

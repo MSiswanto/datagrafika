@@ -80,7 +80,7 @@ elif menu == "📂 Projects":
         st.markdown("<div class='card'>", unsafe_allow_html=True)
         st.markdown("### 🛒 E-commerce Data Analysis")
         st.write("Analisis data transaksi e-commerce untuk mendapatkan insight tren dan perilaku konsumen.")
-        st.link_button("Lihat Proyek", "https://ecommerce-analytics.streamlit.app/")  # Ganti dengan URL kamu
+        st.link_button("Lihat Proyek", "https://analysis-brazilianecommerce.streamlit.app/")  # Ganti dengan URL kamu
         st.markdown("</div>", unsafe_allow_html=True)
 
 # Halaman Blog
@@ -99,7 +99,8 @@ elif menu == "📰 Blog":
 
 # Halaman Kontak
 elif menu == "📞 Kontak":
-    st.title("📞 Kontak Kami")
+    #st.title("📞 Kontak Kami")
+    st.subheader("📞 Kontak Kami")
     st.markdown("""
     Terima kasih telah mengunjungi portofolio kami.  
     Jangan ragu untuk menghubungi saya melalui saluran berikut:

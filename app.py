@@ -65,7 +65,7 @@ if menu == "🏠 Home":
 
 # Halaman Projects
 elif menu == "📂 Projects":
-    st.subheader("📁 Daftar Proyek")
+    st.subheader("📁 Project List")
     col1, col2 = st.columns(2)
 
     with col1:

@@ -42,7 +42,8 @@ st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", 
 st.markdown("<div class='subtitle'>Explore my projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)
 
 # Menu Navigasi
-menu = st.sidebar.radio("Navigasi", ["🏠 Home", "📂 Projects", "📰 Blog"])
+menu = st.sidebar.radio("Navigasi", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
+
 
 # Halaman Home
 if menu == "🏠 Home":
@@ -52,6 +53,16 @@ if menu == "🏠 Home":
         Di website ini, Anda dapat menelusuri berbagai proyek saya, mulai dari prediksi dropout, analisis e-commerce,
         hingga eksperimen dengan model generatif terbaru.
     """)
+    st.markdown("---")
+    st.subheader("📫 Hubungi Saya")
+
+    st.markdown("""
+    📍 Lokasi: East Java, Indonesia  
+    📧 Email: [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
+    💼 LinkedIn: [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
+    🐙 GitHub: [github.com/meilana](https://github.com/MSiswanto)
+""")
+
 
 # Halaman Projects
 elif menu == "📂 Projects":
@@ -84,6 +95,19 @@ elif menu == "📰 Blog":
     - 🧠 **Prompt engineering** kini menjadi keterampilan wajib untuk praktisi AI.
     
     *(Coming soon: artikel-artikel mendalam di bagian ini.)*
+    """)
+
+# Halaman Kontak
+elif menu == "📞 Kontak":
+    st.title("📞 Kontak Kami")
+    st.markdown("""
+    Terima kasih telah mengunjungi portofolio kami.  
+    Jangan ragu untuk menghubungi saya melalui saluran berikut:
+
+    - 📧 Email: [msiswanto@gmail.com](mailto:msiswanto@gmail.com)
+    - 💼 LinkedIn: [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)
+    - 🐙 GitHub: [github.com/MSiswanto](https://github.com/MSiswanto)
+    - 🌐 Website: [meilana.dev](https://https://grafika.streamlit.app/)
     """)
 
 

@@ -110,5 +110,12 @@ elif menu == "📞 Kontak":
     - 🐙 GitHub: [github.com/MSiswanto](https://github.com/MSiswanto)
     - 🌐 Website: [meilana.dev](https://https://grafika.streamlit.app/)
     """)
+with st.form("contact_form"):
+    st.text_input("Nama")
+    st.text_input("Email")
+    st.text_area("Pesan")
+    submitted = st.form_submit_button("Kirim")
+    if submitted:
+        st.success("✅ Pesan berhasil dikirim! (simulasi)")
 
 

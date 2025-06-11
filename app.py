@@ -111,7 +111,7 @@ elif menu == "📞 Contact":
     st.markdown("---")
 
     # Formulir Kontak dengan layout lebih sempit
-    st.subheader("📬 Form to Contact (simulasi)")
+    """st.subheader("📬 Form to Contact (simulasi)")
     col1, col2, col3 = st.columns([1, 2, 1])  # kolom tengah lebar, sisi kiri-kanan kosong
 
     with col2:
@@ -122,4 +122,4 @@ elif menu == "📞 Contact":
 
             submitted = st.form_submit_button("Send Message")
             if submitted:
-                st.success("✅ Terima kasih! Pesan Anda telah diterima (simulasi).")
+                st.success("✅ Terima kasih! Pesan Anda telah diterima (simulasi).") """

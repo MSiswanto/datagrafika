@@ -72,14 +72,14 @@ elif menu == "📂 Projects":
         st.markdown("<div class='card'>", unsafe_allow_html=True)
         st.markdown("### 🎓 Dropout Prediction")
         st.write("Model machine learning untuk memprediksi risiko mahasiswa dropout berdasarkan data akademik.")
-        st.link_button("Lihat Proyek", "https://dropout-prediction-detection.streamlit.app/")
+        st.link_button("View Project", "https://dropout-prediction-detection.streamlit.app/")
         st.markdown("</div>", unsafe_allow_html=True)
 
     with col2:
         st.markdown("<div class='card'>", unsafe_allow_html=True)
         st.markdown("### 🛒 E-commerce Data Analysis")
         st.write("Analisis data transaksi e-commerce untuk mendapatkan insight tren dan perilaku konsumen.")
-        st.link_button("Lihat Proyek", "https://analysis-brazilianecommerce.streamlit.app/")  # Ganti dengan URL kamu
+        st.link_button("View Project", "https://analysis-brazilianecommerce.streamlit.app/")  # Ganti dengan URL kamu
         st.markdown("</div>", unsafe_allow_html=True)
 
 # Halaman Blog

@@ -46,10 +46,10 @@ menu = st.sidebar.radio("Navigasi", ["🏠 Home", "📂 Projects", "📰 Blog", 
 
 # Halaman Home
 if menu == "🏠 Home":
-    st.subheader("Selamat datang di portofolio saya!")
+    st.subheader("Selamat datang di DGrafika!")
     st.write("""
-        Saya adalah praktisi data dengan minat dalam machine learning, analisis data, dan visualisasi interaktif.
-        Di website ini, Anda dapat menelusuri berbagai proyek saya, mulai dari prediksi dropout, analisis e-commerce,
+        Kami merupakan startup yang bergerak dalam bidang Data Science. Kami menangani berbagai proyek terkait data meliputi; data cleaning, data analysis, dan data visualisasi.
+        Di website ini, Anda dapat menelusuri berbagai proyek kami, mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning
         hingga eksperimen dengan model generatif terbaru.
     """)
     st.markdown("---")

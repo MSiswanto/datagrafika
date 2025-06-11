@@ -39,7 +39,7 @@ st.markdown("""
 
 # Judul Halaman
 st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>Explore my projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle'>Explore our projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)
 
 # Menu Navigasi
 menu = st.sidebar.radio("Navigasi", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
@@ -84,7 +84,7 @@ elif menu == "📂 Projects":
 
 # Halaman Blog
 elif menu == "📰 Blog":
-    st.subheader("🧠 Artikel & Update Algoritma")
+    st.subheader("🧠 Artikel")
     st.markdown("""
     Berikut beberapa topik yang sedang hangat di dunia data science:
 

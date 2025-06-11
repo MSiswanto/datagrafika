@@ -59,7 +59,7 @@ if menu == "🏠 Home":
     📍 Lokasi: East Java, Indonesia  
     📧 Email: [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
     💼 LinkedIn: [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
-    🐙 GitHub: [github.com/meilana](https://github.com/MSiswanto)
+    🐙 GitHub: [github.com/MSiswanto](https://github.com/MSiswanto)
 """)
 
 

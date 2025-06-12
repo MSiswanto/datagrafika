@@ -109,6 +109,21 @@ elif menu == "📞 Contact":
     **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
     **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
     """)
+
+    # Icon sosial media dengan link
+    st.markdown("""
+    <div style='text-align: center; font-size: 24px;'>
+       <a href="https://linkedin.com/in/meilana" target="_blank" style="margin: 0 15px; text-decoration: none;">
+           🔗 LinkedIn
+       </a>
+       |
+       <a href="https://github.com/meilana" target="_blank" style="margin: 0 15px; text-decoration: none;">
+           🐙 GitHub
+       </a>
+   </div>
+   <br>
+   """, unsafe_allow_html=True)
+
     
     # Styling tambahan
     st.markdown("""

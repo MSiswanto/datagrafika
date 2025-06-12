@@ -67,8 +67,8 @@ if menu == "🏠 Home":
     </div>
     """, unsafe_allow_html=True)
 
-
     st.markdown("---")
+    
     st.subheader("📫 Hubungi Saya")
     st.markdown("""
     📍 Location : East Java, Indonesia  

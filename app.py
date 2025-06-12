@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 from PIL import Image
 import numpy as np
+import requests
 
 # Konfigurasi halaman
 st.set_page_config(
@@ -111,15 +112,26 @@ elif menu == "📞 Contact":
     st.markdown("---")
 
     # Formulir Kontak dengan layout lebih sempit
-    #st.subheader("📬 Form to Contact (simulasi)")
-    #col1, col2, col3 = st.columns([1, 2, 1])  # kolom tengah lebar, sisi kiri-kanan kosong
+    st.subheader("📬 Form to Contact (simulasi)")
+    col1, col2, col3 = st.columns([1, 2, 1])  # kolom tengah lebar, sisi kiri-kanan kosong
 
-    #with col2:
-        #with st.form("contact_form"):
-            #name = st.text_input("Name")
-            #email = st.text_input("Email")
-            #message = st.text_area("Message")
+    with col2:
+        with st.form("contact_form"):
+            name = st.text_input("Name")
+            email = st.text_input("Email")
+            message = st.text_area("Message")
 
-            #submitted = st.form_submit_button("Send Message")
-            # if submitted:
-                #st.success("✅ Terima kasih! Pesan Anda telah diterima (simulasi).") """
+            submitted = st.form_submit_button("Send Message")
+            if submitted:
+                payload = {
+                    "name": name,
+                    "email": email,
+                    "message": message
+                }
+                response = requests.post("https://script.google.com/macros/s/AKfycbx.../exec", json=payload)
+
+                if response.status_code == 200:
+                    st.success("✅ Terimakasih! Pesan berhasil diterima dan dikirim ke Google Sheet.")
+                else:
+                    st.error("❌ Gagal mengirim pesan.")
+

@@ -62,7 +62,7 @@ if menu == "🏠 Home":
     '>
         🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br><br>
         Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br><br>
-        Di website ini akan dijelaskan berbagai proyek yang telah kami kerjakan; prediksi dropout, analisis e-commerce untuk mendapatkan insight trend & customer behaviour, identification of attrition rate factors dengan berbagai algoritma machine learning dan deep learning,
+        Di website ini akan dijelaskan berbagai proyek yang telah kami kerjakan; prediksi dropout, analisis e-commerce untuk mendapatkan insight trend & customer behaviours, identification of attrition rate factors dengan berbagai algoritma machine learning dan deep learning,
         hingga eksperimen dengan model generatif terbaru, serta proyek NLP (sentiment analysis) dan Computer Vision.
     </div>
     """, unsafe_allow_html=True)

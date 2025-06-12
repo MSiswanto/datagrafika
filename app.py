@@ -109,7 +109,8 @@ elif menu == "📞 Contact":
     **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
     **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
     """)
-     # Styling tambahan
+    
+    # Styling tambahan
     st.markdown("""
     <style>
     .stTextInput > div > input {
@@ -130,7 +131,7 @@ elif menu == "📞 Contact":
     </style>
     """, unsafe_allow_html=True)
 
-    #st.markdown("---")
+    st.markdown("---")
 
     # Formulir Kontak dengan layout lebih sempit
     st.subheader("📬 Form to Contact)")

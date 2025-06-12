@@ -50,7 +50,7 @@ if menu == "🏠 Home":
     st.subheader("Selamat datang di DGrafika!")
     st.markdown("""
     <div style='
-        text-align: center;
+        text-align: justify;
         background-color: #ffffff;
         padding: 25px;
         border-radius: 10px;

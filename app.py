@@ -109,7 +109,26 @@ elif menu == "📞 Contact":
     **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
     **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
     """)
-
+     # Styling tambahan
+    st.markdown("""
+    <style>
+    .stTextInput > div > input {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+    .stTextArea > div > textarea {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+    .stButton > button {
+        background-color: #4B8BBE;
+        color: white;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 0.5em 1em;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     st.markdown("---")
 
     # Formulir Kontak dengan layout lebih sempit

@@ -129,7 +129,8 @@ elif menu == "📞 Contact":
     }
     </style>
     """, unsafe_allow_html=True)
-    st.markdown("---")
+
+    #st.markdown("---")
 
     # Formulir Kontak dengan layout lebih sempit
     st.subheader("📬 Form to Contact)")

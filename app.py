@@ -96,6 +96,33 @@ elif menu == "📰 Blog":
     
     *(Coming soon: artikel-artikel mendalam di bagian ini.)*
     """)
+    elif menu == "📚 Blog":
+    st.title("📚 Artikel & Blog")
+
+    st.markdown("Berikut adalah beberapa artikel dan catatan belajar yang saya tulis terkait data science, machine learning, dan pengembangan model:")
+
+    # Blog Card 1
+    with st.container():
+        st.markdown("""
+            <div style='border:1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 20px; background-color: #fefefe;'>
+                <h4>🔍 Memahami Overfitting dan Cara Mengatasinya</h4>
+                <p>Overfitting adalah salah satu tantangan utama dalam pembuatan model ML. Artikel ini membahas penyebab, tanda-tanda, dan solusi untuk menghindari overfitting.</p>
+                <a href="https://medium.com/@meilana/overfitting-in-machine-learning" target="_blank">📖 Baca Selengkapnya</a>
+            </div>
+        """, unsafe_allow_html=True)
+
+    # Blog Card 2
+    with st.container():
+        st.markdown("""
+            <div style='border:1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 20px; background-color: #fefefe;'>
+                <h4>📊 Exploratory Data Analysis (EDA) yang Efektif</h4>
+                <p>Bagaimana cara mengeksplorasi data sebelum modeling? Di artikel ini saya membahas teknik EDA praktis, tools visualisasi, dan insight dari data e-commerce.</p>
+                <a href="https://meilana.medium.com/eda-data-ecommerce" target="_blank">📖 Baca Selengkapnya</a>
+            </div>
+        """, unsafe_allow_html=True)
+
+    # Tambah artikel lain di sini
+
 
 # Halaman Kontak
 elif menu == "📞 Contact":

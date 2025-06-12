@@ -48,14 +48,16 @@ menu = st.sidebar.radio("Navigasi", ["🏠 Home", "📂 Projects", "📰 Blog", 
 # Halaman Home
 if menu == "🏠 Home":
     st.subheader("Selamat datang di DGrafika!")
-    st.write("""
-        Startup kami bergerak dalam bidang Data Science. Kami menangani berbagai proyek terkait AI dan data science meliputi; data cleaning, data analysis, dan data visualisasi.
-        Di website ini, Anda dapat menelusuri berbagai proyek kami, mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning
-        hingga eksperimen dengan model generatif terbaru, serta proyek terkait dengan NLP (sentiment analysis) dan Computer Vision. 
-    """)
+    st.markdown("""
+    <div style='text-align: center;'>
+        Startup kami bergerak dalam bidang Data Science. Kami menangani berbagai proyek terkait AI dan data science meliputi; data cleaning, data analysis, dan data visualisasi.  
+        Di website ini, Anda dapat menelusuri berbagai proyek kami, mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning  
+        hingga eksperimen dengan model generatif terbaru, serta proyek terkait dengan NLP (sentiment analysis) dan Computer Vision.
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("---")
     st.subheader("📫 Hubungi Saya")
-
     st.markdown("""
     📍 Location : East Java, Indonesia  
     📧 Email   : [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  

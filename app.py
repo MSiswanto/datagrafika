@@ -112,7 +112,7 @@ elif menu == "📞 Contact":
     st.markdown("---")
 
     # Formulir Kontak dengan layout lebih sempit
-    st.subheader("📬 Form to Contact (simulasi)")
+    st.subheader("📬 Form to Contact)")
     col1, col2, col3 = st.columns([1, 2, 1])  # kolom tengah lebar, sisi kiri-kanan kosong
 
     with col2:
@@ -128,7 +128,7 @@ elif menu == "📞 Contact":
                     "email": email,
                     "message": message
                 }
-                response = requests.post("https://script.google.com/macros/s/AKfycbx.../exec", json=payload)
+                response = requests.post("https://script.google.com/macros/s/AKfycbwbNZvsCv9SUdw4i3vHga83nuzfSfn6Aedt2aivNuPJqir9-PKCwaBNSchnA0oauKwF/exec", json=payload)
 
                 if response.status_code == 200:
                     st.success("✅ Terimakasih! Pesan berhasil diterima dan dikirim ke Google Sheet.")

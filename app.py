@@ -130,13 +130,15 @@ elif menu == "📞 Contact":
     st.markdown("Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kontak di bawah ini:")
 
     # Bagian Informasi Kontak
-    st.markdown(""""
+    st.markdown("""
+    ---
     **📧 Email:** [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
     **💼 LinkedIn:** [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
     **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
     **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
-    """")
-    
+    ---
+    """)
+
     # Styling tambahan
     st.markdown("""
     <style>

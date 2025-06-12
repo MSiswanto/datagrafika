@@ -49,9 +49,9 @@ menu = st.sidebar.radio("Navigasi", ["🏠 Home", "📂 Projects", "📰 Blog", 
 if menu == "🏠 Home":
     st.subheader("Selamat datang di DGrafika!")
     st.write("""
-        Kami merupakan startup yang bergerak dalam bidang Data Science. Kami menangani berbagai proyek terkait data meliputi; data cleaning, data analysis, dan data visualisasi.
+        Startup kami bergerak dalam bidang Data Science. Kami menangani berbagai proyek terkait AI dan data science meliputi; data cleaning, data analysis, dan data visualisasi.
         Di website ini, Anda dapat menelusuri berbagai proyek kami, mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning
-        hingga eksperimen dengan model generatif terbaru.
+        hingga eksperimen dengan model generatif terbaru, serta proyek terkait dengan NLP (sentiment analysis) dan Computer Vision. 
     """)
     st.markdown("---")
     st.subheader("📫 Hubungi Saya")

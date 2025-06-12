@@ -96,9 +96,7 @@ elif menu == "📰 Blog":
     
     *(Coming soon: artikel-artikel mendalam di bagian ini.)*
     """)
-    elif menu == "📚 Blog":
-    st.title("📚 Artikel & Blog")
-
+  
     st.markdown("Berikut adalah beberapa artikel dan catatan belajar yang saya tulis terkait data science, machine learning, dan pengembangan model:")
 
     # Blog Card 1

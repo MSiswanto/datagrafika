@@ -136,7 +136,7 @@ elif menu == "📞 Contact":
     **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
     **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
     """)
-
+    
     # Styling tambahan
     st.markdown("""
     <style>

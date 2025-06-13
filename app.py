@@ -5,6 +5,7 @@ from PIL import Image
 import numpy as np
 import requests
 
+# CSS
 st.markdown("""
 <style>
 /* Font Google */
@@ -48,7 +49,7 @@ div[data-testid="stVerticalBlock"] > div {
 }
 </style>
 """, unsafe_allow_html=True)
-
+# CSS
 
 # Konfigurasi halaman
 st.set_page_config(

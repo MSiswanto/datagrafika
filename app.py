@@ -5,6 +5,13 @@ from PIL import Image
 import numpy as np
 import requests
 
+# Konfigurasi halaman
+st.set_page_config(
+    page_title="Portfolio Data Science",
+    page_icon="📊",
+    layout="wide"
+)
+
 # CSS
 st.markdown("""
 <style>
@@ -67,12 +74,6 @@ section[data-testid="stSidebar"] {
 
 # CSS
 
-# Konfigurasi halaman
-st.set_page_config(
-    page_title="Portfolio Data Science",
-    page_icon="📊",
-    layout="wide"
-)
 
 # Judul Halaman
 st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", unsafe_allow_html=True)

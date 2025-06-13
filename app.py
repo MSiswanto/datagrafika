@@ -71,61 +71,6 @@ def card_project(title, description, link):
         </div>
     """, unsafe_allow_html=True)
 
-
-# Fungsi untuk menampilkan judul dan subjudul halaman
-def render_header():
-    st.markdown("""
-        <div class='main-title'>📊 Data Science Portfolio</div>
-        <div class='subtitle'>Explore our latest AI and Data Science projects and articles</div>
-    """, unsafe_allow_html=True)
-
-# Fungsi untuk membuat kartu proyek dengan tautan
-def card_project(title, description, link):
-    st.markdown(f"""
-        <div class='card'>
-            <h3>{title}</h3>
-            <p>{description}</p>
-            <a href='{link}' target='_blank'>🔗 View Project</a>
-        </div>
-    """, unsafe_allow_html=True)
-
-# Fungsi untuk menampilkan CSS styling modern
-def apply_modern_style():
-    st.markdown("""
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-        html, body, [class*="css"]  {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9f9f9;
-            color: #333333;
-        }
-
-        .main-title {
-            font-size: 48px;
-            font-weight: bold;
-            color: #2C3E50;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .subtitle {
-            font-size: 24px;
-            color: #7F8C8D;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .card {
-            background-color: #F9F9F9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-
-
-
 # CSS
 
 # Judul Halaman

@@ -60,12 +60,23 @@ if menu == "🏠 Home":
         font-size: 18px;
         line-height: 1.6;
     '>
-        🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br><br>
-        Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br><br>
-        Di website ini akan dijelaskan berbagai proyek yang telah kami kerjakan; prediksi dropout, analisis e-commerce untuk mendapatkan insight trend & customer behaviours, identification of attrition rate factors dengan berbagai algoritma machine learning dan deep learning,
-        hingga eksperimen dengan model generatif terbaru, serta proyek NLP (sentiment analysis) dan Computer Vision.
+      <h3 style='text-align: center; color: #4B8BBE;'>Tentang Kami</h3>
+
+      <p style='text-align: justify; font-size: 18px; line-height: 1.7;'>
+          🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br><br>
+          Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br><br>
+          Di website ini, Anda dapat menelusuri berbagai proyek kami — mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning, hingga eksperimen dengan model generatif terbaru, serta proyek NLP (sentiment analysis) dan Computer Vision.
+      </p>
+
     </div>
     """, unsafe_allow_html=True)
+
+        #🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br><br>
+        #Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br><br>
+       # Di website ini akan dijelaskan berbagai proyek yang telah kami kerjakan; prediksi dropout, analisis e-commerce untuk mendapatkan insight trend & customer behaviours, identification of attrition rate factors dengan berbagai algoritma machine learning dan deep learning,
+        #hingga eksperimen dengan model generatif terbaru, serta proyek NLP (sentiment analysis) dan Computer Vision.
+    #</div>
+    #""", unsafe_allow_html=True)
 
     st.markdown("---")
     

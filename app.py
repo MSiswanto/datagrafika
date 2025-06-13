@@ -60,7 +60,7 @@ if menu == "🏠 Home":
         font-size: 18px;
         line-height: 1.6;
     '>
-      <h3 style='text-align: center; color: #4B8BBE;'>Tentang Kami</h3>
+      <h3 style='text-align: center; color: #4B8BBE;'>About Us</h3>
 
       <p style='text-align: justify; font-size: 18px; line-height: 1.7;'>
           🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br><br>

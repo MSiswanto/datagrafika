@@ -74,32 +74,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# Tambahkan CSS kustom untuk tampilan modern
-st.markdown("""
-    <style>
-    .main-title {
-        font-size: 48px;
-        font-weight: bold;
-        color: #2C3E50;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .subtitle {
-        font-size: 24px;
-        color: #7F8C8D;
-        text-align: center;
-        margin-bottom: 50px;
-    }
-    .card {
-        background-color: #F9F9F9;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 # Judul Halaman
 st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", unsafe_allow_html=True)
 st.markdown("<div class='subtitle'>Explore our projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)

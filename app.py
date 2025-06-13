@@ -12,68 +12,33 @@ st.set_page_config(
     layout="wide"
 )
 
-# CSS
+# Tambahkan CSS kustom untuk tampilan modern
 st.markdown("""
-<style>
-/* Font Google */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-html, body, [class*="css"] {
-    font-family: 'Inter', sans-serif;
-    background-color: #f9f9f9;
-    color: #333333;
-}
-
-/* Judul & Subjudul */
-h1, h2, h3 {
-    font-weight: 600;
-    color: #222;
-}
-
-/* Tombol */
-button[kind="primary"] {
-    background-color: #4B8BBE;
-    color: white;
-    border-radius: 8px;
-}
-button[kind="primary"]:hover {
-    background-color: #306998;
-}
-
-/* Sidebar */
-section[data-testid="stSidebar"] {
-    background-color: #ffffff;
-    border-right: 1px solid #ddd;
-}
-
-/* Kartu */
-.card {
-    background-color: #F9F9F9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-/* Title & Subtitle */
-.main-title {
-    font-size: 48px;
-    font-weight: bold;
-    color: #2C3E50;
-    text-align: center;
-    margin-bottom: 30px;
-}
-.subtitle {
-    font-size: 24px;
-    color: #7F8C8D;
-    text-align: center;
-    margin-bottom: 50px;
-}
-</style>
+    <style>
+    .main-title {
+        font-size: 48px;
+        font-weight: bold;
+        color: #2C3E50;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .subtitle {
+        font-size: 24px;
+        color: #7F8C8D;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .card {
+        background-color: #F9F9F9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    </style>
 """, unsafe_allow_html=True)
 
 # CSS
-
 
 # Judul Halaman
 st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", unsafe_allow_html=True)

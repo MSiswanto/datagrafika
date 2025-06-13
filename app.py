@@ -11,7 +11,7 @@ st.markdown("""
 /* Font Google */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-html, body, [class*="css"]  {
+html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
     background-color: #f9f9f9;
     color: #333333;
@@ -39,16 +39,32 @@ section[data-testid="stSidebar"] {
     border-right: 1px solid #ddd;
 }
 
-/* Kartu / box */
-div[data-testid="stVerticalBlock"] > div {
-    padding: 1rem;
+/* Kartu */
+.card {
+    background-color: #F9F9F9;
+    padding: 20px;
     border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 0 5px rgba(0,0,0,0.05);
-    margin-bottom: 1rem;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* Title & Subtitle */
+.main-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #2C3E50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.subtitle {
+    font-size: 24px;
+    color: #7F8C8D;
+    text-align: center;
+    margin-bottom: 50px;
 }
 </style>
 """, unsafe_allow_html=True)
+
 # CSS
 
 # Konfigurasi halaman

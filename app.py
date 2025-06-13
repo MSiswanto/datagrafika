@@ -5,6 +5,51 @@ from PIL import Image
 import numpy as np
 import requests
 
+st.markdown("""
+<style>
+/* Font Google */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+html, body, [class*="css"]  {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9;
+    color: #333333;
+}
+
+/* Judul & Subjudul */
+h1, h2, h3 {
+    font-weight: 600;
+    color: #222;
+}
+
+/* Tombol */
+button[kind="primary"] {
+    background-color: #4B8BBE;
+    color: white;
+    border-radius: 8px;
+}
+button[kind="primary"]:hover {
+    background-color: #306998;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #ffffff;
+    border-right: 1px solid #ddd;
+}
+
+/* Kartu / box */
+div[data-testid="stVerticalBlock"] > div {
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    margin-bottom: 1rem;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 # Konfigurasi halaman
 st.set_page_config(
     page_title="Portfolio Data Science",

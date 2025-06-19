@@ -20,6 +20,23 @@ st.set_page_config(
     layout="wide"
 )
 
+# Tambahan CSS untuk sidebar
+st.sidebar.markdown("""
+    <style>
+    .sidebar-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #4B8BBE;
+        margin-bottom: 10px;
+    }
+    .sidebar-box {
+        background-color: #f0f2f6;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 # Tambahkan CSS kustom untuk tampilan modern
 st.markdown("""

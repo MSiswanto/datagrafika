@@ -54,11 +54,11 @@ st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", 
 st.markdown("<div class='subtitle'>Explore our projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)
 
 # Tampilkan judul sidebar
-st.sidebar.markdown('<div class="sidebar-title">📁 Navigasi</div>', unsafe_allow_html=True)
+st.sidebar.markdown('<div class="sidebar-title">Navigasi</div>', unsafe_allow_html=True)
 with st.sidebar:
     st.markdown('<div class="sidebar-box">', unsafe_allow_html=True)
     #menu = st.radio("", ["🏠 Home", "🔍 Prediksi", "📊 Visualisasi"])
-    menu = st.sidebar.radio("Navigasi", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
+    menu = st.sidebar.radio("", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Menu Navigasi

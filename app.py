@@ -74,7 +74,7 @@ if menu == "🏠 Home":
       <h3 style='text-align: center; color: #4B8BBE;'>About Us</h3>
 
       <p style='text-align: justify; font-size: 18px; line-height: 1.7;'>
-          🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br><br>
+          🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br>
           Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br><br>
           Di website ini, Anda dapat menelusuri berbagai proyek kami — mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning, hingga eksperimen dengan model generatif terbaru, serta proyek NLP (sentiment analysis) dan Computer Vision.
       </p>

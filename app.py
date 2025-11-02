@@ -198,78 +198,54 @@ elif menu == "📞 Contact":
     **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
     """)
     
-    # Styling tambahan
-    st.markdown("""
-    <style>
-    .stTextInput > div > input {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-    }
-    .stTextArea > div > textarea {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-    }
-    .stButton > button {
-        background-color: #4B8BBE;
-        color: white;
-        font-weight: bold;
-        border-radius: 8px;
-        padding: 0.5em 1em;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+   import streamlit as st
 
-    st.markdown("---")
-
-    # Formulir Kontak dengan layout lebih sempit
-    st.subheader("📬 Form to Contact)")
-    col1, col2, col3 = st.columns([1, 2, 1])  # kolom tengah lebar, sisi kiri-kanan kosong
-
-    with col2:
-        with st.form("contact_form"):
-            name = st.text_input("Name")
-            email = st.text_input("Email")
-            message = st.text_area("Message")
-
-            submitted = st.form_submit_button("Send Message")
-            if submitted:
-                payload = {
-                    "name": name,
-                    "email": email,
-                    "message": message
-                }
-                response = requests.post("https://script.google.com/macros/s/AKfycbwbNZvsCv9SUdw4i3vHga83nuzfSfn6Aedt2aivNuPJqir9-PKCwaBNSchnA0oauKwF/exec", json=payload)
-
-                if response.status_code == 200:
-                    st.success("✅ Terimakasih! Pesan berhasil diterima dan dikirim ke Google Sheet.")
-                else:
-                    st.error("❌ Gagal mengirim pesan.")
-    # ===== Floating Chatbot Widget =====
-import streamlit.components.v1 as components
-
+# Tambahkan CSS dan HTML chatbot float
 chatbot_html = """
 <style>
-    .chatbot-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 100;
-    }
-    iframe {
-        border: none;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
+.chatbot-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    display: none;
+    z-index: 9999;
+}
+.chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 10000;
+}
 </style>
 
-<div class="chatbot-container">
-    <iframe
-        src="https://grafika.streamlit.app/chatbot"
-        width="340"
-        height="430">
-    </iframe>
-</div>
+<button class="chatbot-button" onclick="toggleChat()">💬</button>
+<iframe id="chatbot" class="chatbot-float" src="https://grafika.streamlit.app/chatbot" frameborder="0"></iframe>
+
+<script>
+function toggleChat() {
+    var chatbot = document.getElementById("chatbot");
+    if (chatbot.style.display === "none" || chatbot.style.display === "") {
+        chatbot.style.display = "block";
+    } else {
+        chatbot.style.display = "none";
+    }
+}
+</script>
 """
-components.html(chatbot_html, height=450)
 
-
+st.markdown(chatbot_html, unsafe_allow_html=True)

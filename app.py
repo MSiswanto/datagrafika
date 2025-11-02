@@ -198,55 +198,105 @@ elif menu == "📞 Contact":
     **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
     """)
     
-import streamlit as st
+# ===== Floating Chatbot Widget (Pro Edition) =====
 import streamlit.components.v1 as components
 
-# Tambahkan CSS dan HTML chatbot float
 chatbot_html = """
 <style>
-.chatbot-float {
+  /* Tombol Chatbot */
+  .chatbot-button {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 350px;
-    height: 500px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    overflow: hidden;
-    display: none;
-    z-index: 9999;
-}
-.chatbot-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #4CAF50;
+    bottom: 90px; /* dinaikkan agar tidak tertutup Manage App */
+    right: 25px;
+    background-color: #25D366;
     color: white;
     border: none;
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    font-size: 30px;
-    cursor: pointer;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 10000;
-}
+    cursor: pointer;
+    z-index: 9999;
+    transition: all 0.3s ease-in-out;
+  }
+  .chatbot-button:hover {
+    background-color: #20ba5a;
+    transform: scale(1.1);
+  }
+
+  /* Pesan pembuka kecil */
+  .chatbot-hint {
+    position: fixed;
+    bottom: 160px;
+    right: 95px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-size: 14px;
+    color: #333;
+    z-index: 9998;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+
+  /* Frame Chatbot */
+  .chatbot-float {
+    position: fixed;
+    bottom: 160px;
+    right: 25px;
+    width: 370px;
+    height: 480px;
+    border: 2px solid #25D366;
+    border-radius: 12px;
+    display: none;
+    z-index: 9998;
+    background: white;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    animation: fadeInUp 0.4s ease-in-out;
+  }
+
+  /* Animasi */
+  @keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
 </style>
 
+<!-- Tombol + Hint + Frame Chatbot -->
+<div class="chatbot-hint" id="chatbot-hint">💬 Hi there! Need help?</div>
 <button class="chatbot-button" onclick="toggleChat()">💬</button>
-<iframe id="chatbot" class="chatbot-float" src="https://grafika.streamlit.app/chatbot" frameborder="0"></iframe>
+<iframe id="chatbot" class="chatbot-float" 
+        src="https://grafika.streamlit.app/chatbot_app"
+        frameborder="0"></iframe>
 
 <script>
-function toggleChat() {
-    var chatbot = document.getElementById("chatbot");
+  const hint = document.getElementById("chatbot-hint");
+  const chatbot = document.getElementById("chatbot");
+
+  function toggleChat() {
     if (chatbot.style.display === "none" || chatbot.style.display === "") {
-        chatbot.style.display = "block";
+      chatbot.style.display = "block";
+      hint.style.display = "none"; // sembunyikan hint saat dibuka
     } else {
-        chatbot.style.display = "none";
+      chatbot.style.display = "none";
+      setTimeout(() => hint.style.display = "block", 2000); // tampilkan lagi hint
     }
-}
+  }
+
+  // Sembunyikan hint otomatis setelah 6 detik
+  setTimeout(() => {
+    if (hint) hint.style.display = "none";
+  }, 6000);
 </script>
 """
 
-st.markdown(chatbot_html, unsafe_allow_html=True)
+components.html(chatbot_html, height=600)

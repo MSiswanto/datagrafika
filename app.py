@@ -198,7 +198,7 @@ elif menu == "📞 Contact":
     **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
     """)
     
-   import streamlit as st
+import streamlit as st
 
 # Tambahkan CSS dan HTML chatbot float
 chatbot_html = """

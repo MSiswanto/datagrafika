@@ -244,4 +244,32 @@ elif menu == "📞 Contact":
                     st.success("✅ Terimakasih! Pesan berhasil diterima dan dikirim ke Google Sheet.")
                 else:
                     st.error("❌ Gagal mengirim pesan.")
+    # ===== Floating Chatbot Widget =====
+import streamlit.components.v1 as components
+
+chatbot_html = """
+<style>
+    .chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+    }
+    iframe {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+</style>
+
+<div class="chatbot-container">
+    <iframe
+        src="https://grafika.streamlit.app/chatbot"
+        width="340"
+        height="430">
+    </iframe>
+</div>
+"""
+components.html(chatbot_html, height=450)
+
 

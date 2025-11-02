@@ -199,6 +199,7 @@ elif menu == "📞 Contact":
     """)
     
 import streamlit as st
+import streamlit.components.v1 as components
 
 # Tambahkan CSS dan HTML chatbot float
 chatbot_html = """

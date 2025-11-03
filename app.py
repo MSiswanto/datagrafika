@@ -142,51 +142,97 @@ from datetime import datetime
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# ===========================
-# Chat widget (collapsible)
-# ===========================
-with st.expander("💬 Chat with AI Assistant", expanded=False):
-    # Display chat history
-    for msg in st.session_state.chat_history:
-        with st.chat_message(msg["role"]):
-            st.write(msg["content"])
-
-    # Input box
-    if prompt := st.chat_input("Type your message..."):
-        # Add user message
-        st.session_state.chat_history.append({
-            "role": "user",
-            "content": prompt,
-            "time": datetime.now().strftime("%H:%M")
-        })
-        with st.chat_message("user"):
-            st.write(prompt)
-
-        # AI response (replace with your model/API call)
-        ai_response = f"AI reply to: {prompt}"  # <-- replace with OpenAI/Gemini/etc.
-        st.session_state.chat_history.append({
-            "role": "assistant",
-            "content": ai_response,
-            "time": datetime.now().strftime("%H:%M")
-        })
-        with st.chat_message("assistant"):
-            st.write(ai_response)
+if "chat_open" not in st.session_state:
+    st.session_state.chat_open = False  # chat minimized by default
 
 # ===========================
-# Optional: custom CSS to make it look modern
+# Simple AI function
+# ===========================
+def simple_ai(prompt):
+    prompt_lower = prompt.lower()
+    if "halo" in prompt_lower or "hi" in prompt_lower:
+        return "Halo! Senang bertemu denganmu. 😊"
+    elif "nama" in prompt_lower:
+        return "Saya chatbot portofolio DGrafika."
+    elif "data science" in prompt_lower:
+        return "DGrafika menangani proyek AI, Data Science, NLP, dan Computer Vision."
+    else:
+        return "Maaf, saya belum bisa menjawab itu. 😅"
+
+# ===========================
+# Toggle chat open/close
+# ===========================
+toggle_button = st.empty()
+if toggle_button.button("💬 Chat"):
+    st.session_state.chat_open = not st.session_state.chat_open
+
+# ===========================
+# Floating chat box
+# ===========================
+if st.session_state.chat_open:
+    chat_container = st.container()
+
+    with chat_container:
+        # Custom CSS untuk floating box
+        st.markdown("""
+        <style>
+        .floating-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            max-height: 450px;
+            background-color: white;
+            border: 2px solid #25D366;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        .floating-chat-header {
+            font-weight: bold;
+            color: #25D366;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        </style>
+        <div class="floating-chat">
+            <div class="floating-chat-header">💬 Chat with AI</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Display chat history
+        for msg in st.session_state.chat_history:
+            with st.chat_message(msg["role"]):
+                st.write(msg["content"])
+
+        # Input box
+        if prompt := st.chat_input("Type your message..."):
+            st.session_state.chat_history.append({
+                "role": "user",
+                "content": prompt,
+                "time": datetime.now().strftime("%H:%M")
+            })
+            with st.chat_message("user"):
+                st.write(prompt)
+
+            # AI response
+            ai_response = simple_ai(prompt)
+            st.session_state.chat_history.append({
+                "role": "assistant",
+                "content": ai_response,
+                "time": datetime.now().strftime("%H:%M")
+            })
+            with st.chat_message("assistant"):
+                st.write(ai_response)
+
+# ===========================
+# Optional CSS untuk bubble
 # ===========================
 st.markdown("""
 <style>
-/* Chat bubble colors */
 .stChatMessage.user { background-color: #DCF8C6 !important; border-radius: 15px; padding: 8px; }
 .stChatMessage.assistant { background-color: #F1F0F0 !important; border-radius: 15px; padding: 8px; }
-
-/* Expander header */
-.css-1r6slb0 { font-weight: bold; font-size: 16px; color: #25D366; }  /* adjust class if needed */
 </style>
 """, unsafe_allow_html=True)
-
-
-
-   
-   

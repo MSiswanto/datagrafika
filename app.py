@@ -35,6 +35,33 @@ with col2:
     st.image("https://lookerstudio.google.com/favicon.ico", width=40)
     st.link_button("View Dashboard", "https://lookerstudio.google.com/reporting/d93cb43d-d199-41c9-b088-566bf728d656/page/KdxKF")
 
+# 🛒 Brazil E-Commerce Data Analysis
+col1, col2 = st.columns([1, 2])
+
+with col1:
+    st.image("https://i.imgur.com/kwF7gMu.png", use_container_width=True)
+
+with col2:
+    st.markdown("""
+    ### 🛒 Brazil E-Commerce Data Analysis  
+    **Unlocking Brazil E-Commerce: Data Insights & Dashboard**  
+    Explore purchasing behaviors and customer patterns in one of the largest e-commerce markets in Latin America.  
+    This project leverages **Python, Streamlit, and Plotly** to analyze **Olist’s public dataset**, revealing  
+    key insights into sales trends, delivery performance, and customer satisfaction.
+
+    **Highlights:**  
+    - Cleaned and analyzed over **100K transactions** from Brazilian online retailers.  
+    - Built an interactive **Streamlit dashboard** for data storytelling.  
+    - Investigated **delivery delays and their impact on customer ratings**.  
+    - Applied **product segmentation** to identify best-selling categories.  
+    - Generated **business insights** to improve logistics efficiency.
+
+    🔗 [View Live App](https://analysis-brazilianecommerce.streamlit.app/)
+    """)
+
+st.markdown("---")
+
+
 # =========================================
 # 📞 Contact Section
 # =========================================

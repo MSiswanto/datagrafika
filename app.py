@@ -28,12 +28,15 @@ with col1:
     st.write("A Streamlit-based AI system to predict student dropout risk.")
     st.image("https://streamlit.io/images/brand/streamlit-mark-color.png", width=150)
     st.link_button("Open Project", "https://dropout-prediction-detection.streamlit.app/")
+    st.image("https://lookerstudio.google.com/favicon.ico", width=40)
+    st.link_button("View Dashboard", "https://lookerstudio.google.com/reporting/d93cb43d-d199-41c9-b088-566bf728d656/page/KdxKF")
 
 with col2:
     st.header("📊 HR Attrition Dashboard")
     st.write("Interactive Looker Studio dashboard visualizing employee attrition trends.")
     st.image("https://lookerstudio.google.com/favicon.ico", width=40)
-    st.link_button("View Dashboard", "https://lookerstudio.google.com/reporting/d93cb43d-d199-41c9-b088-566bf728d656/page/KdxKF")
+    st.link_button("View Dashboard", "https://lookerstudio.google.com/reporting/79ac12c1-f6b7-4cc1-a35d-e1906ae505d7/page/E9jJF")
+    
 
 # 🛒 Brazil E-Commerce Data Analysis
 col1, col2 = st.columns([1, 2])

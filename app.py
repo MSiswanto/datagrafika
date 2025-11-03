@@ -133,37 +133,7 @@ Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kon
 **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
 ''')
 
-# ===========================
-# 💬 Mini Floating Chatbot
-# ===========================
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
 
-if "chat_open" not in st.session_state:
-    st.session_state.chat_open = False
-
-# Tombol toggle
-if st.button("💬 Chat", key="chat_toggle"):
-    st.session_state.chat_open = not st.session_state.chat_open
-
-# Chat container
-if st.session_state.chat_open:
-    for msg in st.session_state.chat_history:
-        color = "#DCF8C6" if msg["role"]=="user" else "#F1F0F0"
-        st.markdown(f"<div style='background:{color}; padding:8px; border-radius:8px; margin-bottom:5px;'>{msg['content']}</div>", unsafe_allow_html=True)
-
-    # Input chat
-    user_input = st.text_input("Type your message...", key="chat_input")
-    if user_input:
-        st.session_state.chat_history.append({"role":"user","content":user_input})
-        response = f"Your message was: {user_input}. (AI response goes here)"
-        st.session_state.chat_history.append({"role":"assistant","content":response})
-
-
-
-
-
-import streamlit as st
 from datetime import datetime, timedelta
 import streamlit.components.v1 as components
 

@@ -3,10 +3,10 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 from PIL import Image
-import requests
+from datetime import datetime
 
 # ===========================
-# 🚨 Konfigurasi Halaman
+# Page config
 # ===========================
 st.set_page_config(
     page_title="Portfolio Data Science",
@@ -15,65 +15,103 @@ st.set_page_config(
 )
 
 # ===========================
-# CSS Kustom
+# Sidebar CSS & navigation
 # ===========================
-st.markdown('''
+st.sidebar.markdown("""
 <style>
-/* Sidebar */
-.sidebar-title { font-size:24px; font-weight:bold; color:#4B8BBE; margin-bottom:10px; }
-.sidebar-box { background-color:#f0f2f6; padding:15px; border-radius:10px; border:1px solid #ccc; }
-
-/* Main Title & Subtitle */
-.main-title { font-size:48px; font-weight:bold; color:#2C3E50; text-align:center; margin-bottom:30px; }
-.subtitle { font-size:24px; color:#7F8C8D; text-align:center; margin-bottom:50px; }
-
-/* Card */
-.card { background-color:#F9F9F9; padding:20px; border-radius:10px; box-shadow:2px 2px 12px rgba(0,0,0,0.1); margin-bottom:20px; }
+.sidebar-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4B8BBE;
+    margin-bottom: 10px;
+}
+.sidebar-box {
+    background-color: #f0f2f6;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
 </style>
-''', unsafe_allow_html=True)
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+.main-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #2C3E50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.subtitle {
+    font-size: 24px;
+    color: #7F8C8D;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.card {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ===========================
-# Sidebar
+# Page title
+# ===========================
+st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle'>Explore our projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)
+
+# ===========================
+# Sidebar navigation
 # ===========================
 st.sidebar.markdown('<div class="sidebar-title">Navigasi</div>', unsafe_allow_html=True)
 with st.sidebar:
     st.markdown('<div class="sidebar-box">', unsafe_allow_html=True)
-    menu = st.radio("", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
+    menu = st.sidebar.radio("", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
     st.markdown('</div>', unsafe_allow_html=True)
 
 # ===========================
-# Halaman Home
+# Pages
 # ===========================
 if menu == "🏠 Home":
-    st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", unsafe_allow_html=True)
-    st.markdown("<div class='subtitle'>Explore our projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)
-
     st.subheader("Selamat datang di DGrafika!")
-    st.markdown('''
-<div style='text-align: justify; background-color: #ffffff; padding: 25px; border-radius: 10px;
-            border: 1px solid #ddd; box-shadow: 2px 2px 10px rgba(0,0,0,0.05); margin-bottom:20px;
-            font-size:18px; line-height:1.6;'>
-  <h3 style='text-align:center; color:#4B8BBE;'>About Us</h3>
-  <p style='text-align:justify; font-size:18px; line-height:1.7;'>
-      🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br>
-      Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br>
-      Di website ini, Anda dapat menelusuri berbagai proyek kami — mulai dari prediksi dropout, analisis e-commerce, eksperimen model generatif terbaru, serta proyek NLP dan Computer Vision.
-  </p>
-</div>
-''', unsafe_allow_html=True)
+    st.markdown("""
+    <div style='
+        text-align: justify;
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+        font-size: 18px;
+        line-height: 1.6;
+    '>
+      <h3 style='text-align: center; color: #4B8BBE;'>About Us</h3>
+
+      <p style='text-align: justify; font-size: 18px; line-height: 1.7;'>
+          🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br>
+          Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br>
+          Di website ini, Anda dapat menelusuri berbagai proyek kami — mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning, hingga eksperimen dengan model generatif terbaru, serta proyek NLP (sentiment analysis) dan Computer Vision.
+      </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("---")
+    
     st.subheader("📫 Hubungi Saya")
-    st.markdown('''
-📍 Location : East Java, Indonesia  
-📧 Email   : [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
-💼 LinkedIn: [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
-🐙 GitHub  : [github.com/MSiswanto](https://github.com/MSiswanto)
-''')
+    st.markdown("""
+    📍 Location : East Java, Indonesia  
+    📧 Email   : [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
+    💼 LinkedIn: [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
+    🐙 GitHub  : [github.com/MSiswanto](https://github.com/MSiswanto)
+""")
 
-# ===========================
-# Halaman Projects
-# ===========================
 elif menu == "📂 Projects":
     st.subheader("📁 Project List")
     col1, col2 = st.columns(2)
@@ -82,72 +120,51 @@ elif menu == "📂 Projects":
         st.markdown("<div class='card'>", unsafe_allow_html=True)
         st.markdown("### 🎓 Dropout Prediction")
         st.write("Model machine learning untuk memprediksi risiko mahasiswa dropout berdasarkan data akademik.")
-        st.link_button("View Project", "https://dropout-prediction-detection.streamlit.app/")
+        st.markdown("[View Project](https://dropout-prediction-detection.streamlit.app/)")
         st.markdown("</div>", unsafe_allow_html=True)
 
     with col2:
         st.markdown("<div class='card'>", unsafe_allow_html=True)
         st.markdown("### 🛒 E-commerce Data Analysis")
         st.write("Analisis data transaksi e-commerce untuk mendapatkan insight tren dan perilaku konsumen.")
-        st.link_button("View Project", "https://analysis-brazilianecommerce.streamlit.app/")
+        st.markdown("[View Project](https://analysis-brazilianecommerce.streamlit.app/)")
         st.markdown("</div>", unsafe_allow_html=True)
 
-# ===========================
-# Halaman Blog
-# ===========================
 elif menu == "📰 Blog":
     st.subheader("🧠 Artikel")
-    st.markdown('''
-Berikut beberapa topik yang sedang hangat di dunia data science:
+    st.markdown("""
+    Berikut beberapa topik yang sedang hangat di dunia data science:
 
-- 🔍 RAG (Retrieval-Augmented Generation)
-- 📊 AutoML tools seperti Google VertexAI dan H2O.ai
-- 🤖 LLMs (Claude, Gemini, GPT-4o)
-- 🧠 Prompt engineering
-''')
+    - 🔍 **RAG (Retrieval-Augmented Generation)** semakin populer di NLP.
+    - 📊 **AutoML** tools semakin memudahkan eksperimen.
+    - 🤖 **LLMs** terus berevolusi dengan model seperti GPT-4o.
+    - 🧠 **Prompt engineering** kini menjadi keterampilan wajib untuk praktisi AI.
+    
+    *(Coming soon: artikel-artikel mendalam di bagian ini.)*
+    """)
 
-    for title, desc in [
-        ("🔍 Memahami Overfitting dan Cara Mengatasinya",
-         "Overfitting adalah salah satu tantangan utama dalam pembuatan model ML. Artikel ini membahas penyebab, tanda-tanda, dan solusi untuk menghindari overfitting."),
-        ("📊 Exploratory Data Analysis (EDA) yang Efektif",
-         "Bagaimana cara mengeksplorasi data sebelum modeling? Di artikel ini saya membahas teknik EDA praktis, tools visualisasi, dan insight dari data e-commerce.")
-    ]:
-        st.markdown(f'''
-<div style='border:1px solid #ddd; padding:15px; border-radius:10px; margin-bottom:20px; background-color:#fefefe;'>
-    <h4>{title}</h4>
-    <p>{desc}</p>
-    <a href="#" target="_blank">📖 Baca Selengkapnya</a>
-</div>
-''', unsafe_allow_html=True)
-
-# ===========================
-# Halaman Contact
-# ===========================
 elif menu == "📞 Contact":
     st.title("📞 Contact Us")
-    st.markdown('''
-Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kontak di bawah ini:
-**📧 Email:** [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
-**💼 LinkedIn:** [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
-**🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
-**🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
-''')
+    st.markdown("""
+    Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kontak di bawah ini:
 
-import streamlit as st
-from datetime import datetime
+    **📧 Email:** [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
+    **💼 LinkedIn:** [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
+    **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
+    **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
+    """)
 
 # ===========================
-# Session state initialization
+# ===========================
+# Premium Floating Chat
+# ===========================
 # ===========================
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 if "chat_open" not in st.session_state:
-    st.session_state.chat_open = False  # chat minimized by default
+    st.session_state.chat_open = False
 
-# ===========================
-# Simple AI function
-# ===========================
 def simple_ai(prompt):
     prompt_lower = prompt.lower()
     if "halo" in prompt_lower or "hi" in prompt_lower:
@@ -159,21 +176,13 @@ def simple_ai(prompt):
     else:
         return "Maaf, saya belum bisa menjawab itu. 😅"
 
-# ===========================
-# Toggle chat open/close
-# ===========================
 toggle_button = st.empty()
 if toggle_button.button("💬 Chat"):
     st.session_state.chat_open = not st.session_state.chat_open
 
-# ===========================
-# Floating chat box
-# ===========================
 if st.session_state.chat_open:
     chat_container = st.container()
-
     with chat_container:
-        # Custom CSS untuk floating box
         st.markdown("""
         <style>
         .floating-chat {
@@ -189,12 +198,27 @@ if st.session_state.chat_open:
             box-shadow: 0 4px 16px rgba(0,0,0,0.25);
             z-index: 9999;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
         .floating-chat-header {
             font-weight: bold;
             color: #25D366;
             text-align: center;
             margin-bottom: 5px;
+        }
+        .chat-bubble {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 12px;
+            max-width: 80%;
+            animation: slideIn 0.3s ease-in-out;
+        }
+        .user { background-color: #DCF8C6; align-self: flex-end; }
+        .assistant { background-color: #F1F0F0; align-self: flex-start; }
+        @keyframes slideIn {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
         }
         </style>
         <div class="floating-chat">
@@ -204,35 +228,12 @@ if st.session_state.chat_open:
 
         # Display chat history
         for msg in st.session_state.chat_history:
-            with st.chat_message(msg["role"]):
-                st.write(msg["content"])
+            role_class = "user" if msg["role"] == "user" else "assistant"
+            st.markdown(f"<div class='chat-bubble {role_class}'>{msg['content']}<br><small>{msg['time']}</small></div>", unsafe_allow_html=True)
 
-        # Input box
         if prompt := st.chat_input("Type your message..."):
-            st.session_state.chat_history.append({
-                "role": "user",
-                "content": prompt,
-                "time": datetime.now().strftime("%H:%M")
-            })
-            with st.chat_message("user"):
-                st.write(prompt)
-
-            # AI response
+            timestamp = datetime.now().strftime("%H:%M")
+            st.session_state.chat_history.append({"role": "user","content": prompt,"time": timestamp})
             ai_response = simple_ai(prompt)
-            st.session_state.chat_history.append({
-                "role": "assistant",
-                "content": ai_response,
-                "time": datetime.now().strftime("%H:%M")
-            })
-            with st.chat_message("assistant"):
-                st.write(ai_response)
-
-# ===========================
-# Optional CSS untuk bubble
-# ===========================
-st.markdown("""
-<style>
-.stChatMessage.user { background-color: #DCF8C6 !important; border-radius: 15px; padding: 8px; }
-.stChatMessage.assistant { background-color: #F1F0F0 !important; border-radius: 15px; padding: 8px; }
-</style>
-""", unsafe_allow_html=True)
+            st.session_state.chat_history.append({"role": "assistant","content": ai_response,"time": datetime.now().strftime("%H:%M")})
+            st.experimental_rerun()

@@ -231,9 +231,19 @@ if st.session_state.chat_open:
             role_class = "user" if msg["role"] == "user" else "assistant"
             st.markdown(f"<div class='chat-bubble {role_class}'>{msg['content']}<br><small>{msg['time']}</small></div>", unsafe_allow_html=True)
 
-        if prompt := st.chat_input("Type your message..."):
+                if prompt := st.chat_input("Type your message..."):
             timestamp = datetime.now().strftime("%H:%M")
-            st.session_state.chat_history.append({"role": "user","content": prompt,"time": timestamp})
+            st.session_state.chat_history.append({
+                "role": "user",
+                "content": prompt,
+                "time": timestamp
+            })
             ai_response = simple_ai(prompt)
-            st.session_state.chat_history.append({"role": "assistant","content": ai_response,"time": datetime.now().strftime("%H:%M")})
-            st.experimental_rerun()
+            st.session_state.chat_history.append({
+                "role": "assistant",
+                "content": ai_response,
+                "time": datetime.now().strftime("%H:%M")
+            })
+            # ✅ Force rerender manually
+            st.session_state._chat_trigger = not st.session_state.get("_chat_trigger", False)
+            st.rerun()

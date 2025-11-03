@@ -1,88 +1,80 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import plotly.express as px
 from PIL import Image
-import numpy as np
 import requests
 
-# Konfigurasi halaman
-import streamlit as st
-import pandas as pd
-import numpy as np
-import requests
-import plotly.express as px
-from PIL import Image
-
-# 🚨 Konfigurasi halaman
+# ===========================
+# 🚨 Konfigurasi Halaman
+# ===========================
 st.set_page_config(
     page_title="Portfolio Data Science",
     page_icon="📊",
     layout="wide"
 )
 
-# Tambahan CSS untuk sidebar
-st.sidebar.markdown("""
-    <style>
-    .sidebar-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #4B8BBE;
-        margin-bottom: 10px;
-    }
-    .sidebar-box {
-        background-color: #f0f2f6;
-        padding: 15px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-# Tambahkan CSS kustom untuk tampilan modern
+# ===========================
+# CSS Kustom
+# ===========================
 st.markdown("""
-    <style>
-    .main-title {
-        font-size: 48px;
-        font-weight: bold;
-        color: #2C3E50;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .subtitle {
-        font-size: 24px;
-        color: #7F8C8D;
-        text-align: center;
-        margin-bottom: 50px;
-    }
-    .card {
-        background-color: #F9F9F9;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
-    }
-    </style>
+<style>
+/* Sidebar */
+.sidebar-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4B8BBE;
+    margin-bottom: 10px;
+}
+.sidebar-box {
+    background-color: #f0f2f6;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Main Title & Subtitle */
+.main-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #2C3E50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.subtitle {
+    font-size: 24px;
+    color: #7F8C8D;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Card */
+.card {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+</style>
 """, unsafe_allow_html=True)
 
-# CSS
-
-# Judul Halaman
-st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>Explore our projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)
-
-# Tampilkan judul sidebar
+# ===========================
+# Sidebar
+# ===========================
 st.sidebar.markdown('<div class="sidebar-title">Navigasi</div>', unsafe_allow_html=True)
 with st.sidebar:
     st.markdown('<div class="sidebar-box">', unsafe_allow_html=True)
-    #menu = st.radio("", ["🏠 Home", "🔍 Prediksi", "📊 Visualisasi"])
-    menu = st.sidebar.radio("", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
+    menu = st.radio("", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Menu Navigasi
-#menu = st.sidebar.radio("Navigasi", ["🏠 Home", "📂 Projects", "📰 Blog", "📞 Contact"])
-
+# ===========================
 # Halaman Home
+# ===========================
 if menu == "🏠 Home":
+    st.markdown("<div class='main-title'>👨‍💻 Data Science Portfolio</div>", unsafe_allow_html=True)
+    st.markdown("<div class='subtitle'>Explore our projects and latest insights in Data Science and AI</div>", unsafe_allow_html=True)
+
     st.subheader("Selamat datang di DGrafika!")
     st.markdown("""
     <div style='
@@ -101,31 +93,23 @@ if menu == "🏠 Home":
       <p style='text-align: justify; font-size: 18px; line-height: 1.7;'>
           🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br>
           Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br>
-          Di website ini, Anda dapat menelusuri berbagai proyek kami — mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning, hingga eksperimen dengan model generatif terbaru, serta proyek NLP (sentiment analysis) dan Computer Vision.
+          Di website ini, Anda dapat menelusuri berbagai proyek kami — mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning, eksperimen model generatif terbaru, serta proyek NLP dan Computer Vision.
       </p>
-
     </div>
     """, unsafe_allow_html=True)
 
-        #🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br><br>
-        #Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br><br>
-        #Di website ini akan dijelaskan berbagai proyek yang telah kami kerjakan; prediksi dropout, analisis e-commerce untuk mendapatkan insight trend & customer behaviours, identification of attrition rate factors dengan berbagai algoritma machine learning dan deep learning,
-        #hingga eksperimen dengan model generatif terbaru, serta proyek NLP (sentiment analysis) dan Computer Vision.
-    #</div>
-    #""", unsafe_allow_html=True)
-
     st.markdown("---")
-    
     st.subheader("📫 Hubungi Saya")
     st.markdown("""
     📍 Location : East Java, Indonesia  
     📧 Email   : [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
     💼 LinkedIn: [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
     🐙 GitHub  : [github.com/MSiswanto](https://github.com/MSiswanto)
-""")
+    """)
 
-
+# ===========================
 # Halaman Projects
+# ===========================
 elif menu == "📂 Projects":
     st.subheader("📁 Project List")
     col1, col2 = st.columns(2)
@@ -141,162 +125,76 @@ elif menu == "📂 Projects":
         st.markdown("<div class='card'>", unsafe_allow_html=True)
         st.markdown("### 🛒 E-commerce Data Analysis")
         st.write("Analisis data transaksi e-commerce untuk mendapatkan insight tren dan perilaku konsumen.")
-        st.link_button("View Project", "https://analysis-brazilianecommerce.streamlit.app/")  # Ganti dengan URL kamu
+        st.link_button("View Project", "https://analysis-brazilianecommerce.streamlit.app/")
         st.markdown("</div>", unsafe_allow_html=True)
 
+# ===========================
 # Halaman Blog
+# ===========================
 elif menu == "📰 Blog":
     st.subheader("🧠 Artikel")
     st.markdown("""
     Berikut beberapa topik yang sedang hangat di dunia data science:
 
-    - 🔍 **RAG (Retrieval-Augmented Generation)** semakin populer di NLP.
-    - 📊 **AutoML** tools seperti Google VertexAI dan H2O.ai semakin memudahkan eksperimen.
-    - 🤖 **LLMs** terus berevolusi dengan model seperti Claude, Gemini, dan GPT-4o.
-    - 🧠 **Prompt engineering** kini menjadi keterampilan wajib untuk praktisi AI.
+    - 🔍 **RAG (Retrieval-Augmented Generation)**
+    - 📊 **AutoML** tools seperti Google VertexAI dan H2O.ai
+    - 🤖 **LLMs** (Claude, Gemini, GPT-4o)
+    - 🧠 **Prompt engineering**
     
     *(Coming soon: artikel-artikel mendalam di bagian ini.)*
     """)
-  
-    st.markdown("Berikut adalah beberapa artikel terkait data science, machine learning, dan pengembangan model:")
 
-    # Blog Card 1
-    with st.container():
-        st.markdown("""
+    # Contoh Blog Card
+    for title, desc in [
+        ("🔍 Memahami Overfitting dan Cara Mengatasinya",
+         "Overfitting adalah salah satu tantangan utama dalam pembuatan model ML. Artikel ini membahas penyebab, tanda-tanda, dan solusi untuk menghindari overfitting."),
+        ("📊 Exploratory Data Analysis (EDA) yang Efektif",
+         "Bagaimana cara mengeksplorasi data sebelum modeling? Di artikel ini saya membahas teknik EDA praktis, tools visualisasi, dan insight dari data e-commerce.")
+    ]:
+        st.markdown(f"""
             <div style='border:1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 20px; background-color: #fefefe;'>
-                <h4>🔍 Memahami Overfitting dan Cara Mengatasinya</h4>
-                <p>Overfitting adalah salah satu tantangan utama dalam pembuatan model ML. Artikel ini membahas penyebab, tanda-tanda, dan solusi untuk menghindari overfitting.</p>
-                <a href="" target="_blank">📖 Baca Selengkapnya</a>
-               
+                <h4>{title}</h4>
+                <p>{desc}</p>
+                <a href="#" target="_blank">📖 Baca Selengkapnya</a>
             </div>
         """, unsafe_allow_html=True)
 
-    # Blog Card 2
-    with st.container():
-        st.markdown("""
-            <div style='border:1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 20px; background-color: #fefefe;'>
-                <h4>📊 Exploratory Data Analysis (EDA) yang Efektif</h4>
-                <p>Bagaimana cara mengeksplorasi data sebelum modeling? Di artikel ini saya membahas teknik EDA praktis, tools visualisasi, dan insight dari data e-commerce.</p>
-                <a href="" target="_blank">📖 Baca Selengkapnya</a>
-               
-            </div>
-        """, unsafe_allow_html=True)
-
-    # Tambah artikel lain di sini
-
-
-# Halaman Kontak
+# ===========================
+# Halaman Contact
+# ===========================
 elif menu == "📞 Contact":
     st.title("📞 Contact Us")
     st.markdown("Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kontak di bawah ini:")
-
-    # Bagian Informasi Kontak
     st.markdown("""
     **📧 Email:** [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
     **💼 LinkedIn:** [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
     **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
     **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
     """)
-    
-# ===== Floating Chatbot Widget (Pro Edition) =====
-import streamlit.components.v1 as components
 
-chatbot_html = """
-<style>
-  /* Tombol Chatbot */
-  .chatbot-button {
-    position: fixed;
-    bottom: 90px; /* dinaikkan agar tidak tertutup Manage App */
-    right: 25px;
-    background-color: #25D366;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    cursor: pointer;
-    z-index: 9999;
-    transition: all 0.3s ease-in-out;
-  }
-  .chatbot-button:hover {
-    background-color: #20ba5a;
-    transform: scale(1.1);
-  }
+# ===========================
+# 💬 Chatbot Mini (Pilihan A)
+# ===========================
+st.markdown("---")
+st.markdown("## 💬 Chat with AI Assistant")
 
-  /* Pesan pembuka kecil */
-  .chatbot-hint {
-    position: fixed;
-    bottom: 160px;
-    right: 95px;
-    background: white;
-    border: 1px solid #ddd;
-    padding: 10px 15px;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    font-size: 14px;
-    color: #333;
-    z-index: 9998;
-    animation: fadeIn 1.5s ease-in-out;
-  }
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
-  /* Frame Chatbot */
-  .chatbot-float {
-    position: fixed;
-    bottom: 160px;
-    right: 25px;
-    width: 370px;
-    height: 480px;
-    border: 2px solid #25D366;
-    border-radius: 12px;
-    display: none;
-    z-index: 9998;
-    background: white;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-    animation: fadeInUp 0.4s ease-in-out;
-  }
+# Tampilkan history
+for msg in st.session_state.chat_history:
+    with st.chat_message(msg["role"]):
+        st.write(msg["content"])
 
-  /* Animasi */
-  @keyframes fadeInUp {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-</style>
+# Chat input
+if prompt := st.chat_input("Type your message..."):
+    st.session_state.chat_history.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.write(prompt)
 
-<!-- Tombol + Hint + Frame Chatbot -->
-<div class="chatbot-hint" id="chatbot-hint">💬 Hi there! Need help?</div>
-<button class="chatbot-button" onclick="toggleChat()">💬</button>
-<iframe id="chatbot" class="chatbot-float" 
-        src="https://grafika.streamlit.app/chatbot_app"
-        frameborder="0"></iframe>
+    # Placeholder AI response, bisa diganti OpenAI API
+    response = f"Your message was: {prompt}. (AI response goes here)"
+    with st.chat_message("assistant"):
+        st.write(response)
+    st.session_state.chat_history.append({"role": "assistant", "content": response})
 
-<script>
-  const hint = document.getElementById("chatbot-hint");
-  const chatbot = document.getElementById("chatbot");
-
-  function toggleChat() {
-    if (chatbot.style.display === "none" || chatbot.style.display === "") {
-      chatbot.style.display = "block";
-      hint.style.display = "none"; // sembunyikan hint saat dibuka
-    } else {
-      chatbot.style.display = "none";
-      setTimeout(() => hint.style.display = "block", 2000); // tampilkan lagi hint
-    }
-  }
-
-  // Sembunyikan hint otomatis setelah 6 detik
-  setTimeout(() => {
-    if (hint) hint.style.display = "none";
-  }, 6000);
-</script>
-"""
-
-components.html(chatbot_html, height=600)

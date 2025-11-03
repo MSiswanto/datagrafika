@@ -43,8 +43,10 @@ st.header("📩 Contact")
 st.write("Reach me via [LinkedIn](https://www.linkedin.com) | [GitHub](https://github.com/MSiswanto)")
 
 # =========================================
-# 💬 Floating Chatbot Section
+# 💬 Floating Chatbot Section (Final Pro)
 # =========================================
+import streamlit as st
+from datetime import datetime
 
 # --- State initialization
 if "chat_history" not in st.session_state:
@@ -57,22 +59,24 @@ if "chat_open" not in st.session_state:
 def simple_ai(prompt):
     prompt_lower = prompt.lower()
     if "halo" in prompt_lower or "hi" in prompt_lower:
-        return "Halo! Senang bertemu denganmu. 😊"
+        return "👋 Halo! Senang bertemu denganmu hari ini."
     elif "nama" in prompt_lower:
-        return "Saya chatbot portofolio DGrafika."
-    elif "data" in prompt_lower:
-        return "DGrafika mengerjakan proyek Data Science, AI, dan Machine Learning."
+        return "Saya 🤖 chatbot portofolio DataGrafika."
     elif "project" in prompt_lower:
-        return "Beberapa proyek saya termasuk dropout prediction, HR analytics, dan AI dashboards."
+        return "📊 Saya bantu menampilkan proyek Data Science, AI, dan dashboard interaktif kamu."
+    elif "terima kasih" in prompt_lower:
+        return "🙏 Sama-sama! Senang bisa membantu."
+    elif "data" in prompt_lower:
+        return "🧠 DGrafika fokus pada AI, NLP, dan visualisasi data modern."
     else:
-        return "Terima kasih! Pertanyaanmu sudah saya catat. 😊"
+        return "✨ Maaf, saya belum paham pertanyaannya. Tapi saya akan terus belajar!"
 
 # --- Floating chat button
 toggle = st.button("💬 Chat", key="chat_toggle", help="Click to open/close chatbot")
 if toggle:
     st.session_state.chat_open = not st.session_state.chat_open
 
-# --- If chat opened
+# --- Show chat window
 if st.session_state.chat_open:
     st.markdown("""
     <style>
@@ -81,44 +85,49 @@ if st.session_state.chat_open:
         bottom: 20px;
         right: 20px;
         width: 350px;
-        max-height: 450px;
+        max-height: 480px;
         background-color: white;
         border: 2px solid #25D366;
-        border-radius: 12px;
-        padding: 10px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        border-radius: 14px;
+        padding: 10px 12px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.3);
         z-index: 9999;
-        overflow-y: auto;
         display: flex;
         flex-direction: column;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        font-family: "Helvetica Neue", sans-serif;
     }
     .floating-chat-header {
-        font-weight: bold;
+        font-weight: 600;
         color: #25D366;
         text-align: center;
-        margin-bottom: 5px;
+        font-size: 16px;
+        margin-bottom: 6px;
     }
     .chat-bubble {
-        padding: 8px;
+        padding: 8px 10px;
         margin: 5px 0;
         border-radius: 12px;
         max-width: 80%;
-        animation: slideIn 0.3s ease-in-out;
+        word-wrap: break-word;
+        line-height: 1.3;
+        animation: fadeInUp 0.25s ease-in-out;
     }
     .user { background-color: #DCF8C6; align-self: flex-end; }
     .assistant { background-color: #F1F0F0; align-self: flex-start; }
-
-    @keyframes slideIn {
-        from {opacity: 0; transform: translateY(10px);}
+    small { font-size: 10px; color: #555; }
+    @keyframes fadeInUp {
+        from {opacity: 0; transform: translateY(8px);}
         to {opacity: 1; transform: translateY(0);}
     }
     </style>
-    <div class="floating-chat">
-        <div class="floating-chat-header">💬 Chat with AI</div>
+    <div class="floating-chat" id="chatbox">
+        <div class="floating-chat-header">💬 Chat with DataGrafika</div>
     </div>
     """, unsafe_allow_html=True)
 
-    # --- Chat history
+    # --- Display chat history
     for msg in st.session_state.chat_history:
         role_class = "user" if msg["role"] == "user" else "assistant"
         st.markdown(
@@ -126,7 +135,7 @@ if st.session_state.chat_open:
             unsafe_allow_html=True
         )
 
-    # --- Input box
+    # --- Input
     if prompt := st.chat_input("Type your message..."):
         timestamp = datetime.now().strftime("%H:%M")
         st.session_state.chat_history.append({
@@ -140,6 +149,15 @@ if st.session_state.chat_open:
             "content": ai_response,
             "time": datetime.now().strftime("%H:%M")
         })
-        # ✅ Rerun safely using new Streamlit API
         st.session_state._chat_trigger = not st.session_state.get("_chat_trigger", False)
         st.rerun()
+
+    # --- Auto-scroll to latest message
+    st.markdown("""
+    <script>
+    var chatBox = document.getElementById('chatbox');
+    if (chatBox) {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+    </script>
+    """, unsafe_allow_html=True)

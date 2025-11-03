@@ -19,43 +19,11 @@ st.set_page_config(
 # ===========================
 st.markdown("""
 <style>
-/* Sidebar */
-.sidebar-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #4B8BBE;
-    margin-bottom: 10px;
-}
-.sidebar-box {
-    background-color: #f0f2f6;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-}
-
-/* Main Title & Subtitle */
-.main-title {
-    font-size: 48px;
-    font-weight: bold;
-    color: #2C3E50;
-    text-align: center;
-    margin-bottom: 30px;
-}
-.subtitle {
-    font-size: 24px;
-    color: #7F8C8D;
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-/* Card */
-.card {
-    background-color: #F9F9F9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
+.sidebar-title { font-size:24px; font-weight:bold; color:#4B8BBE; margin-bottom:10px; }
+.sidebar-box { background-color:#f0f2f6; padding:15px; border-radius:10px; border:1px solid #ccc; }
+.main-title { font-size:48px; font-weight:bold; color:#2C3E50; text-align:center; margin-bottom:30px; }
+.subtitle { font-size:24px; color:#7F8C8D; text-align:center; margin-bottom:50px; }
+.card { background-color:#F9F9F9; padding:20px; border-radius:10px; box-shadow:2px 2px 12px rgba(0,0,0,0.1); margin-bottom:20px; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -77,23 +45,14 @@ if menu == "🏠 Home":
 
     st.subheader("Selamat datang di DGrafika!")
     st.markdown("""
-    <div style='
-        text-align: justify;
-        background-color: #ffffff;
-        padding: 25px;
-        border-radius: 10px;
-        border: 1px solid #ddd;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
-        margin-bottom: 20px;
-        font-size: 18px;
-        line-height: 1.6;
-    '>
-      <h3 style='text-align: center; color: #4B8BBE;'>About Us</h3>
-
-      <p style='text-align: justify; font-size: 18px; line-height: 1.7;'>
+    <div style='text-align: justify; background-color: #ffffff; padding: 25px; border-radius: 10px;
+                border: 1px solid #ddd; box-shadow: 2px 2px 10px rgba(0,0,0,0.05); margin-bottom:20px;
+                font-size:18px; line-height:1.6;'>
+      <h3 style='text-align:center; color:#4B8BBE;'>About Us</h3>
+      <p style='text-align:justify; font-size:18px; line-height:1.7;'>
           🚀 <strong>Startup kami bergerak dalam bidang Data Science.</strong><br>
           Kami menangani berbagai proyek terkait AI dan data science seperti data cleaning, data analysis, dan visualisasi data.<br>
-          Di website ini, Anda dapat menelusuri berbagai proyek kami — mulai dari prediksi dropout, analisis e-commerce dengan berbagai algoritma machine learning dan deep learning, eksperimen model generatif terbaru, serta proyek NLP dan Computer Vision.
+          Di website ini, Anda dapat menelusuri berbagai proyek kami — mulai dari prediksi dropout, analisis e-commerce, eksperimen model generatif terbaru, serta proyek NLP dan Computer Vision.
       </p>
     </div>
     """, unsafe_allow_html=True)
@@ -136,12 +95,10 @@ elif menu == "📰 Blog":
     st.markdown("""
     Berikut beberapa topik yang sedang hangat di dunia data science:
 
-    - 🔍 **RAG (Retrieval-Augmented Generation)**
-    - 📊 **AutoML** tools seperti Google VertexAI dan H2O.ai
-    - 🤖 **LLMs** (Claude, Gemini, GPT-4o)
-    - 🧠 **Prompt engineering**
-    
-    *(Coming soon: artikel-artikel mendalam di bagian ini.)*
+    - 🔍 RAG (Retrieval-Augmented Generation)
+    - 📊 AutoML tools seperti Google VertexAI dan H2O.ai
+    - 🤖 LLMs (Claude, Gemini, GPT-4o)
+    - 🧠 Prompt engineering
     """)
 
     for title, desc in [
@@ -151,7 +108,7 @@ elif menu == "📰 Blog":
          "Bagaimana cara mengeksplorasi data sebelum modeling? Di artikel ini saya membahas teknik EDA praktis, tools visualisasi, dan insight dari data e-commerce.")
     ]:
         st.markdown(f"""
-            <div style='border:1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 20px; background-color: #fefefe;'>
+            <div style='border:1px solid #ddd; padding:15px; border-radius:10px; margin-bottom:20px; background-color:#fefefe;'>
                 <h4>{title}</h4>
                 <p>{desc}</p>
                 <a href="#" target="_blank">📖 Baca Selengkapnya</a>
@@ -163,8 +120,8 @@ elif menu == "📰 Blog":
 # ===========================
 elif menu == "📞 Contact":
     st.title("📞 Contact Us")
-    st.markdown("Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kontak di bawah ini:")
     st.markdown("""
+    Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kontak di bawah ini:
     **📧 Email:** [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
     **💼 LinkedIn:** [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
     **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
@@ -172,7 +129,7 @@ elif menu == "📞 Contact":
     """)
 
 # ===========================
-# 💬 Floating Mini Chatbot dengan Auto-Scroll
+# 💬 Floating Mini Chatbot
 # ===========================
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
@@ -185,9 +142,40 @@ if toggle_btn:
     st.session_state.chat_open = not st.session_state.chat_open
 
 if st.session_state.chat_open:
-    # Container chat dengan auto-scroll
+    # Chat container
     st.markdown(
         """
         <div id="chat-container" style="
             position: fixed;
             bottom: 80px;
+            right: 25px;
+            width: 350px;
+            height: 450px;
+            border: 2px solid #25D366;
+            border-radius: 12px;
+            background-color: white;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            padding: 10px;
+            z-index: 9999;
+            overflow-y: auto;
+        "></div>
+        <script>
+        const container = document.getElementById('chat-container');
+        container.scrollTop = container.scrollHeight;
+        </script>
+        """, unsafe_allow_html=True
+    )
+
+    # Tampilkan chat history
+    for msg in st.session_state.chat_history:
+        role_color = "#DCF8C6" if msg["role"]=="user" else "#F1F0F0"
+        st.markdown(
+            f"<div style='background:{role_color}; padding:8px; border-radius:8px; margin-bottom:5px;'>{msg['content']}</div>",
+            unsafe_allow_html=True
+        )
+
+    # Input chat
+    if prompt := st.text_input("Type your message...", key="chat_input"):
+        st.session_state.chat_history.append({"role": "user", "content": prompt})
+        response = f"Your message was: {prompt}. (AI response goes here)"
+        st.session_state.chat_h

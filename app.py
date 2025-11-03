@@ -1,6 +1,6 @@
 import streamlit as st
+from datetime import datetime, timedelta
 import streamlit.components.v1 as components
-from datetime import datetime
 
 # ===========================
 # Session state
@@ -11,14 +11,32 @@ if "chat_history" not in st.session_state:
 if "chat_open" not in st.session_state:
     st.session_state.chat_open = False
 
-# ===========================
-# Floating chat button
-# ===========================
-if st.button("💬", key="chat_button"):
-    st.session_state.chat_open = not st.session_state.chat_open
+if "last_interaction" not in st.session_state:
+    st.session_state.last_interaction = datetime.now()
+
+if "new_message" not in st.session_state:
+    st.session_state.new_message = False
 
 # ===========================
-# CSS for polished WhatsApp-style chat
+# Floating chat button with indicator
+# ===========================
+button_label = "💬"
+if st.session_state.new_message and not st.session_state.chat_open:
+    button_label += " 🔴"
+
+if st.button(button_label, key="chat_button"):
+    st.session_state.chat_open = not st.session_state.chat_open
+    st.session_state.new_message = False  # clear red dot
+    st.session_state.last_interaction = datetime.now()
+
+# ===========================
+# Auto-collapse after 30 seconds
+# ===========================
+if st.session_state.chat_open and datetime.now() - st.session_state.last_interaction > timedelta(seconds=30):
+    st.session_state.chat_open = False
+
+# ===========================
+# CSS
 # ===========================
 st.markdown('''
 <style>
@@ -31,7 +49,6 @@ st.markdown('''
     background-color: white;
     border: 2px solid #25D366;
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -45,8 +62,6 @@ st.markdown('''
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     cursor: move;
 }
 .chat-messages {
@@ -64,27 +79,15 @@ st.markdown('''
     max-width: 80%;
     word-wrap: break-word;
     font-size: 14px;
-    line-height: 1.4;
 }
-.user { 
-    background-color: #DCF8C6; 
-    align-self: flex-end; 
-}
-.ai { 
-    background-color: #F1F0F0; 
-    align-self: flex-start; 
-}
-.timestamp {
-    font-size: 10px;
-    color: gray;
-    margin-top: 2px;
-    text-align: right;
-}
+.user { background-color: #DCF8C6; align-self: flex-end; }
+.ai { background-color: #F1F0F0; align-self: flex-start; }
+.timestamp { font-size: 10px; color: gray; margin-top: 2px; text-align: right; }
 </style>
 ''', unsafe_allow_html=True)
 
 # ===========================
-# Render chat container
+# Render floating chat
 # ===========================
 if st.session_state.chat_open:
     st.markdown('<div class="chat-container" id="chat-container">', unsafe_allow_html=True)
@@ -97,49 +100,49 @@ if st.session_state.chat_open:
     </div>
     ''', unsafe_allow_html=True)
 
-    # Messages container
-    st.markdown('<div class="chat-messages" id="chat-messages">', unsafe_allow_html=True)
+    # Messages
     for chat in st.session_state.chat_history:
         role_class = "user" if chat["role"]=="user" else "ai"
-        timestamp = chat.get("time", "")
+        timestamp = chat.get("time","")
         st.markdown(f'''
             <div class="chat-bubble {role_class}">
                 {chat["content"]}
                 <div class="timestamp">{timestamp}</div>
             </div>
         ''', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
     # Chat input
     prompt = st.chat_input("Type your message...")
     if prompt:
         now = datetime.now().strftime("%H:%M")
-        st.session_state.chat_history.append({"role": "user", "content": prompt, "time": now})
-
-        # AI reply (replace with your AI call)
+        st.session_state.chat_history.append({"role":"user","content":prompt,"time":now})
+        # AI reply (replace with actual API call)
         response = f"AI reply to: {prompt}"
-        st.session_state.chat_history.append({"role": "assistant", "content": response, "time": now})
+        st.session_state.chat_history.append({"role":"assistant","content":response,"time":now})
+        st.session_state.last_interaction = datetime.now()
+        st.experimental_rerun()
 
 # ===========================
-# JavaScript: draggable + X + auto-scroll
+# New message indicator
+# ===========================
+if not st.session_state.chat_open:
+    if st.session_state.chat_history and st.session_state.chat_history[-1]["role"]=="assistant":
+        st.session_state.new_message = True
+
+# ===========================
+# JS draggable + close button
 # ===========================
 components.html('''
 <script>
 const chatContainer = window.parent.document.getElementById("chat-container");
 const chatHeader = window.parent.document.getElementById("chat-header");
 const closeBtn = window.parent.document.getElementById("chat-close");
-const chatMessages = window.parent.document.getElementById("chat-messages");
 
-// Close button
+// Close chat
 if (closeBtn){
     closeBtn.onclick = () => {
         window.parent.postMessage({func: "closeChat"}, "*");
     }
-}
-
-// Auto-scroll
-if(chatMessages){
-    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 // Make draggable
@@ -165,16 +168,7 @@ if(chatContainer && chatHeader){
         };
     };
 
-    chatHeader.ondragstart = function() {
-        return false;
-    };
+    chatHeader.ondragstart = function() { return false; };
 }
 </script>
 ''', height=0)
-
-# ===========================
-# Listen for X button click
-# ===========================
-st.experimental_get_query_params()
-if st.session_state.get("chat_open") is False:
-    st.experimental_rerun()

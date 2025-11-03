@@ -240,4 +240,4 @@ if st.session_state.chat_open:
             st.session_state.chat_history.append({"role":"user","content":prompt,"time":now})
             response = f"AI reply to: {prompt}"
             st.session_state.chat_history.append({"role":"assistant","content":response,"time":now})
-            st.experimental_rerun()  # only here to refresh messages immediately
+            #st.experimental_rerun()  # only here to refresh messages immediately

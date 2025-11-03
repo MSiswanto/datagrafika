@@ -27,7 +27,7 @@ with col1:
     st.header("🧠 Dropout Prediction System")
     st.write("A Streamlit-based AI system to predict student dropout risk.")
     st.image("https://streamlit.io/images/brand/streamlit-mark-color.png", width=150)
-    st.link_button("Open Project", "https://grafika.streamlit.app")
+    st.link_button("Open Project", "https://dropout-prediction-detection.streamlit.app/")
 
 with col2:
     st.header("📊 HR Attrition Dashboard")

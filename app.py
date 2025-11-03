@@ -134,133 +134,59 @@ Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kon
 ''')
 
 import streamlit as st
-from datetime import datetime, timedelta
-import streamlit.components.v1 as components
+from datetime import datetime
 
 # ===========================
-# Initialize session state
+# Session state initialization
 # ===========================
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-if "chat_open" not in st.session_state:
-    st.session_state.chat_open = False
+# ===========================
+# Chat widget (collapsible)
+# ===========================
+with st.expander("💬 Chat with AI Assistant", expanded=False):
+    # Display chat history
+    for msg in st.session_state.chat_history:
+        with st.chat_message(msg["role"]):
+            st.write(msg["content"])
 
-if "last_interaction" not in st.session_state:
-    st.session_state.last_interaction = datetime.now()
+    # Input box
+    if prompt := st.chat_input("Type your message..."):
+        # Add user message
+        st.session_state.chat_history.append({
+            "role": "user",
+            "content": prompt,
+            "time": datetime.now().strftime("%H:%M")
+        })
+        with st.chat_message("user"):
+            st.write(prompt)
 
-if "new_message" not in st.session_state:
-    st.session_state.new_message = False
-
-if "displayed_count" not in st.session_state:
-    st.session_state.displayed_count = 0
+        # AI response (replace with your model/API call)
+        ai_response = f"AI reply to: {prompt}"  # <-- replace with OpenAI/Gemini/etc.
+        st.session_state.chat_history.append({
+            "role": "assistant",
+            "content": ai_response,
+            "time": datetime.now().strftime("%H:%M")
+        })
+        with st.chat_message("assistant"):
+            st.write(ai_response)
 
 # ===========================
-# Floating chat button
+# Optional: custom CSS to make it look modern
 # ===========================
-button_label = "💬"
-if st.session_state.new_message and not st.session_state.chat_open:
-    button_label += " 🔴"
-
-if st.button(button_label, key="chat_button"):
-    st.session_state.chat_open = not st.session_state.chat_open
-    st.session_state.new_message = False
-    st.session_state.last_interaction = datetime.now()
-
-# ===========================
-# Auto-collapse after 30 seconds
-# ===========================
-if st.session_state.chat_open and datetime.now() - st.session_state.last_interaction > timedelta(seconds=30):
-    st.session_state.chat_open = False
-
-# ===========================
-# CSS with animation
-# ===========================
-st.markdown('''
+st.markdown("""
 <style>
-.chat-container {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 350px;
-    height: 450px;
-    background-color: white;
-    border: 2px solid #25D366;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 9999;
-}
-.chat-header {
-    background-color: #25D366;
-    color: white;
-    padding: 10px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: move;
-}
-.chat-messages {
-    padding: 10px;
-    flex: 1;
-    overflow-y: auto;
-    background-color: #e5ddd5;
-    display: flex;
-    flex-direction: column;
-}
-.chat-bubble {
-    padding: 10px;
-    border-radius: 15px;
-    margin-bottom: 8px;
-    max-width: 80%;
-    word-wrap: break-word;
-    font-size: 14px;
-    opacity: 0;
-    transform: translateX(50px);
-    animation: slideIn 0.5s forwards;
-}
-.user { background-color: #DCF8C6; align-self: flex-end; }
-.ai { background-color: #F1F0F0; align-self: flex-start; }
-.timestamp { font-size: 10px; color: gray; margin-top: 2px; text-align: right; }
+/* Chat bubble colors */
+.stChatMessage.user { background-color: #DCF8C6 !important; border-radius: 15px; padding: 8px; }
+.stChatMessage.assistant { background-color: #F1F0F0 !important; border-radius: 15px; padding: 8px; }
 
-@keyframes slideIn {
-    to { opacity: 1; transform: translateX(0); }
-}
+/* Expander header */
+.css-1r6slb0 { font-weight: bold; font-size: 16px; color: #25D366; }  /* adjust class if needed */
 </style>
-''', unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
-# ===========================
-# Render chat messages dynamically
-# ===========================
-if st.session_state.chat_open:
-    st.markdown('<div class="chat-container" id="chat-container">', unsafe_allow_html=True)
 
-    # Header with close button
-    st.markdown('''
-    <div class="chat-header" id="chat-header">
-        Chat AI
-        <button id="chat-close" style="background:none;border:none;color:white;font-size:16px;cursor:pointer;">✖</button>
-    </div>
-    ''', unsafe_allow_html=True)
 
-    # Only render new messages
-    new_messages = st.session_state.chat_history[st.session_state.displayed_count:]
-    for chat in new_messages:
-        role_class = "user" if chat["role"]=="user" else "ai"
-        timestamp = chat.get("time","")
-        st.markdown(f'''
-            <div class="chat-bubble {role_class}">
-                {chat["content"]}
-                <div class="timestamp">{timestamp}</div>
-            </div>
-        ''', unsafe_allow_html=True)
-
-    st.session_state.displayed_count = len(st.session_state.chat_history)
-
-    # Chat input
-    prompt = st.chat_input("Type your message...")
-    if prompt:
-        now = datetime.now().strftime("%H:%M")
-        st.session_state.chat_history.append({"role":"user","content":prompt,"time":now})
+   
+   

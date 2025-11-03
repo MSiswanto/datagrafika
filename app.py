@@ -39,7 +39,7 @@ with col2:
 col1, col2 = st.columns([1, 2])
 
 with col1:
-    st.image("https://www.freepik.com/free-photos-vectors/brazilian?utm_source=chatgpt.com", use_container_width=True)
+    st.image("https://cdn.pixabay.com/photo/2021/03/26/09/19/shopping-6125344_1280.png", use_container_width=True)
 
 with col2:
     st.markdown("""

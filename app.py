@@ -136,25 +136,138 @@ Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kon
 # ===========================
 # 💬 Mini Floating Chatbot
 # ===========================
+import streamlit.components.v1 as components
+
+# ===========================
+# Session state
+# ===========================
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 if "chat_open" not in st.session_state:
     st.session_state.chat_open = False
 
-# Tombol toggle
-if st.button("💬 Chat", key="chat_toggle"):
+# ===========================
+# CSS
+# ===========================
+st.markdown('''
+<style>
+.chat-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 9999;
+    transition: transform 0.2s;
+}
+.chat-btn:hover { transform: scale(1.1); }
+.chat-container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 450px;
+    background-color: white;
+    border: 2px solid #25D366;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+.chat-header {
+    background-color: #25D366;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: move;
+}
+.chat-messages {
+    padding: 10px;
+    flex: 1;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+}
+.chat-input { padding: 10px; border-top: 1px solid #ddd; }
+</style>
+''', unsafe_allow_html=True)
+
+# ===========================
+# Floating chat button
+# ===========================
+if st.button("💬", key="chat_button"):
     st.session_state.chat_open = not st.session_state.chat_open
 
-# Chat container
+# ===========================
+# Floating chat container
+# ===========================
 if st.session_state.chat_open:
-    for msg in st.session_state.chat_history:
-        color = "#DCF8C6" if msg["role"]=="user" else "#F1F0F0"
-        st.markdown(f"<div style='background:{color}; padding:8px; border-radius:8px; margin-bottom:5px;'>{msg['content']}</div>", unsafe_allow_html=True)
+    st.markdown('<div class="chat-container">', unsafe_allow_html=True)
 
-    # Input chat
-    user_input = st.text_input("Type your message...", key="chat_input")
-    if user_input:
-        st.session_state.chat_history.append({"role":"user","content":user_input})
-        response = f"Your message was: {user_input}. (AI response goes here)"
-        st.session_state.chat_history.append({"role":"assistant","content":response})
+    # Header with close button
+    st.markdown('''
+    <div class="chat-header">
+        Chat AI
+        <button id="chat-close" style="background:none;border:none;color:white;font-size:16px;cursor:pointer;">✖</button>
+    </div>
+    ''', unsafe_allow_html=True)
+
+    # Messages
+    st.markdown('<div class="chat-messages" id="chat-messages">', unsafe_allow_html=True)
+    for chat in st.session_state.chat_history:
+        bg = "#DCF8C6" if chat["role"]=="user" else "#F1F0F0"
+        align = "right" if chat["role"]=="user" else "left"
+        st.markdown(f'''
+            <div style="background:{bg}; padding:8px; border-radius:8px; margin-bottom:5px; text-align:{align};">
+                {chat["content"]}
+            </div>
+        ''', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    # Chat input
+    prompt = st.chat_input("Type your message...")
+    if prompt:
+        st.session_state.chat_history.append({"role":"user", "content":prompt})
+        response = f"AI reply to: {prompt}"  # Replace with OpenAI/GPT API call
+        st.session_state.chat_history.append({"role":"assistant", "content":response})
+        st.experimental_rerun()  # auto-refresh
+
+# ===========================
+# JavaScript: handle X and auto-scroll
+# ===========================
+components.html('''
+<script>
+const closeBtn = window.parent.document.getElementById("chat-close");
+if (closeBtn){
+    closeBtn.onclick = () => {
+        window.parent.postMessage({func: "closeChat"}, "*");
+    }
+}
+// Auto-scroll
+const chatMessages = window.parent.document.getElementById("chat-messages");
+if(chatMessages){
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+</script>
+''', height=0)
+
+# ===========================
+# Handle X button click
+# ===========================
+st.experimental_get_query_params()  # needed to trigger rerun
+if st.session_state.get("chat_open") is False:
+    st.experimental_rerun()

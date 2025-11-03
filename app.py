@@ -181,4 +181,13 @@ if "chat_open" not in st.session_state:
     st.session_state.chat_open = False
 
 toggle_btn = st.button("💬 Chat", key="chat_toggle", help="Open/close chat")
-if to
+if toggle_btn:
+    st.session_state.chat_open = not st.session_state.chat_open
+
+if st.session_state.chat_open:
+    # Container chat dengan auto-scroll
+    st.markdown(
+        """
+        <div id="chat-container" style="
+            position: fixed;
+            bottom: 80px;

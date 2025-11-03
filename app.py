@@ -33,7 +33,7 @@ with col2:
     st.header("📊 HR Attrition Dashboard")
     st.write("Interactive Looker Studio dashboard visualizing employee attrition trends.")
     st.image("https://lookerstudio.google.com/favicon.ico", width=40)
-    st.link_button("View Dashboard", "https://lookerstudio.google.com/")
+    st.link_button("View Dashboard", "https://lookerstudio.google.com/reporting/d93cb43d-d199-41c9-b088-566bf728d656/page/KdxKF")
 
 # =========================================
 # 📞 Contact Section

@@ -129,36 +129,4 @@ elif menu == "📞 Contact":
     Terima kasih telah mengunjungi portofolio kami. Silakan hubungi kami melalui kontak di bawah ini:
     **📧 Email:** [msiswanto@gmail.com](mailto:msiswanto@gmail.com)  
     **💼 LinkedIn:** [linkedin.com/in/meilanasiswanto](https://linkedin.com/in/meilanasiswanto)  
-    **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSiswanto) 
-    **🌐 Website:** [meilana.dev](https://grafika.streamlit.app/)
-    """)
-
-# ===========================
-# 💬 Floating Mini Chatbot
-# ===========================
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
-
-if "chat_open" not in st.session_state:
-    st.session_state.chat_open = False
-
-# Tombol toggle chat
-toggle_btn = st.button("💬 Chat", key="chat_toggle")
-if toggle_btn:
-    st.session_state.chat_open = not st.session_state.chat_open
-
-# Container chat
-if st.session_state.chat_open:
-    for msg in st.session_state.chat_history:
-        role_color = "#DCF8C6" if msg["role"]=="user" else "#F1F0F0"
-        st.markdown(
-            f"<div style='background:{role_color}; padding:8px; border-radius:8px; margin-bottom:5px;'>{msg['content']}</div>",
-            unsafe_allow_html=True
-        )
-
-    # Input chat
-    if prompt := st.text_input("Type your message...", key="chat_input"):
-        st.session_state.chat_history.append({"role": "user", "content": prompt})
-        response = f"Your message was: {prompt}. (AI response goes here)"
-        st.session_state.chat_history.append({"role": "assistant", "content": response})
-        st.experimental_rerun()
+    **🐙 GitHub:** [github.com/MSiswanto](https://github.com/MSisw)

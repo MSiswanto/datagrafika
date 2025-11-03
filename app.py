@@ -144,7 +144,6 @@ elif menu == "📰 Blog":
     *(Coming soon: artikel-artikel mendalam di bagian ini.)*
     """)
 
-    # Contoh Blog Card
     for title, desc in [
         ("🔍 Memahami Overfitting dan Cara Mengatasinya",
          "Overfitting adalah salah satu tantangan utama dalam pembuatan model ML. Artikel ini membahas penyebab, tanda-tanda, dan solusi untuk menghindari overfitting."),
@@ -173,28 +172,13 @@ elif menu == "📞 Contact":
     """)
 
 # ===========================
-# 💬 Chatbot Mini (Pilihan A)
+# 💬 Floating Mini Chatbot dengan Auto-Scroll
 # ===========================
-st.markdown("---")
-st.markdown("## 💬 Chat with AI Assistant")
-
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Tampilkan history
-for msg in st.session_state.chat_history:
-    with st.chat_message(msg["role"]):
-        st.write(msg["content"])
+if "chat_open" not in st.session_state:
+    st.session_state.chat_open = False
 
-# Chat input
-if prompt := st.chat_input("Type your message..."):
-    st.session_state.chat_history.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.write(prompt)
-
-    # Placeholder AI response, bisa diganti OpenAI API
-    response = f"Your message was: {prompt}. (AI response goes here)"
-    with st.chat_message("assistant"):
-        st.write(response)
-    st.session_state.chat_history.append({"role": "assistant", "content": response})
-
+toggle_btn = st.button("💬 Chat", key="chat_toggle", help="Open/close chat")
+if to

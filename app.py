@@ -138,7 +138,7 @@ from datetime import datetime, timedelta
 import streamlit.components.v1 as components
 
 # ===========================
-# Session state
+# Initialize session state
 # ===========================
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
@@ -152,8 +152,11 @@ if "last_interaction" not in st.session_state:
 if "new_message" not in st.session_state:
     st.session_state.new_message = False
 
+if "displayed_count" not in st.session_state:
+    st.session_state.displayed_count = 0
+
 # ===========================
-# Floating chat button with indicator
+# Floating chat button
 # ===========================
 button_label = "💬"
 if st.session_state.new_message and not st.session_state.chat_open:
@@ -161,7 +164,7 @@ if st.session_state.new_message and not st.session_state.chat_open:
 
 if st.button(button_label, key="chat_button"):
     st.session_state.chat_open = not st.session_state.chat_open
-    st.session_state.new_message = False  # clear red dot
+    st.session_state.new_message = False
     st.session_state.last_interaction = datetime.now()
 
 # ===========================
@@ -171,7 +174,7 @@ if st.session_state.chat_open and datetime.now() - st.session_state.last_interac
     st.session_state.chat_open = False
 
 # ===========================
-# CSS
+# CSS with animation
 # ===========================
 st.markdown('''
 <style>
@@ -214,15 +217,22 @@ st.markdown('''
     max-width: 80%;
     word-wrap: break-word;
     font-size: 14px;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideIn 0.5s forwards;
 }
 .user { background-color: #DCF8C6; align-self: flex-end; }
 .ai { background-color: #F1F0F0; align-self: flex-start; }
 .timestamp { font-size: 10px; color: gray; margin-top: 2px; text-align: right; }
+
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
 </style>
 ''', unsafe_allow_html=True)
 
 # ===========================
-# Render floating chat
+# Render chat messages dynamically
 # ===========================
 if st.session_state.chat_open:
     st.markdown('<div class="chat-container" id="chat-container">', unsafe_allow_html=True)
@@ -235,8 +245,9 @@ if st.session_state.chat_open:
     </div>
     ''', unsafe_allow_html=True)
 
-    # Messages
-    for chat in st.session_state.chat_history:
+    # Only render new messages
+    new_messages = st.session_state.chat_history[st.session_state.displayed_count:]
+    for chat in new_messages:
         role_class = "user" if chat["role"]=="user" else "ai"
         timestamp = chat.get("time","")
         st.markdown(f'''
@@ -246,64 +257,10 @@ if st.session_state.chat_open:
             </div>
         ''', unsafe_allow_html=True)
 
+    st.session_state.displayed_count = len(st.session_state.chat_history)
+
     # Chat input
     prompt = st.chat_input("Type your message...")
     if prompt:
         now = datetime.now().strftime("%H:%M")
         st.session_state.chat_history.append({"role":"user","content":prompt,"time":now})
-        # AI reply (replace with actual API call)
-        response = f"AI reply to: {prompt}"
-        st.session_state.chat_history.append({"role":"assistant","content":response,"time":now})
-        st.session_state.last_interaction = datetime.now()
-        st.experimental_rerun()
-
-# ===========================
-# New message indicator
-# ===========================
-if not st.session_state.chat_open:
-    if st.session_state.chat_history and st.session_state.chat_history[-1]["role"]=="assistant":
-        st.session_state.new_message = True
-
-# ===========================
-# JS draggable + close button
-# ===========================
-components.html('''
-<script>
-const chatContainer = window.parent.document.getElementById("chat-container");
-const chatHeader = window.parent.document.getElementById("chat-header");
-const closeBtn = window.parent.document.getElementById("chat-close");
-
-// Close chat
-if (closeBtn){
-    closeBtn.onclick = () => {
-        window.parent.postMessage({func: "closeChat"}, "*");
-    }
-}
-
-// Make draggable
-if(chatContainer && chatHeader){
-    chatHeader.onmousedown = function(event){
-        let shiftX = event.clientX - chatContainer.getBoundingClientRect().left;
-        let shiftY = event.clientY - chatContainer.getBoundingClientRect().top;
-
-        function moveAt(pageX, pageY){
-            chatContainer.style.left = pageX - shiftX + 'px';
-            chatContainer.style.top = pageY - shiftY + 'px';
-        }
-
-        function onMouseMove(event){
-            moveAt(event.pageX, event.pageY);
-        }
-
-        document.addEventListener('mousemove', onMouseMove);
-
-        document.onmouseup = function(){
-            document.removeEventListener('mousemove', onMouseMove);
-            document.onmouseup = null;
-        };
-    };
-
-    chatHeader.ondragstart = function() { return false; };
-}
-</script>
-''', height=0)

@@ -19,10 +19,15 @@ st.set_page_config(
 # ===========================
 st.markdown("""
 <style>
+/* Sidebar */
 .sidebar-title { font-size:24px; font-weight:bold; color:#4B8BBE; margin-bottom:10px; }
 .sidebar-box { background-color:#f0f2f6; padding:15px; border-radius:10px; border:1px solid #ccc; }
+
+/* Main Title & Subtitle */
 .main-title { font-size:48px; font-weight:bold; color:#2C3E50; text-align:center; margin-bottom:30px; }
 .subtitle { font-size:24px; color:#7F8C8D; text-align:center; margin-bottom:50px; }
+
+/* Card */
 .card { background-color:#F9F9F9; padding:20px; border-radius:10px; box-shadow:2px 2px 12px rgba(0,0,0,0.1); margin-bottom:20px; }
 </style>
 """, unsafe_allow_html=True)
@@ -137,36 +142,13 @@ if "chat_history" not in st.session_state:
 if "chat_open" not in st.session_state:
     st.session_state.chat_open = False
 
-toggle_btn = st.button("💬 Chat", key="chat_toggle", help="Open/close chat")
+# Tombol toggle chat
+toggle_btn = st.button("💬 Chat", key="chat_toggle")
 if toggle_btn:
     st.session_state.chat_open = not st.session_state.chat_open
 
+# Container chat
 if st.session_state.chat_open:
-    # Chat container
-    st.markdown(
-        """
-        <div id="chat-container" style="
-            position: fixed;
-            bottom: 80px;
-            right: 25px;
-            width: 350px;
-            height: 450px;
-            border: 2px solid #25D366;
-            border-radius: 12px;
-            background-color: white;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-            padding: 10px;
-            z-index: 9999;
-            overflow-y: auto;
-        "></div>
-        <script>
-        const container = document.getElementById('chat-container');
-        container.scrollTop = container.scrollHeight;
-        </script>
-        """, unsafe_allow_html=True
-    )
-
-    # Tampilkan chat history
     for msg in st.session_state.chat_history:
         role_color = "#DCF8C6" if msg["role"]=="user" else "#F1F0F0"
         st.markdown(
@@ -178,4 +160,5 @@ if st.session_state.chat_open:
     if prompt := st.text_input("Type your message...", key="chat_input"):
         st.session_state.chat_history.append({"role": "user", "content": prompt})
         response = f"Your message was: {prompt}. (AI response goes here)"
-        st.session_state.chat_h
+        st.session_state.chat_history.append({"role": "assistant", "content": response})
+        st.experimental_rerun()

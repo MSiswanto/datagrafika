@@ -70,7 +70,7 @@ st.markdown("---")
 # =========================================
 st.markdown("---")
 st.header("📩 Contact")
-st.write("Reach me via [LinkedIn](https://www.linkedin.com) | [GitHub](https://github.com/MSiswanto)")
+st.write("Reach me via [LinkedIn](https://www.linkedin.com/in/meilanasiswanto/) | [GitHub](https://github.com/MSiswanto)")
 
 # =========================================
 # 💬 Floating Chatbot Section (Final Pro)

@@ -8,7 +8,7 @@ import plotly.express as px
 # ⚙️ Konfigurasi Halaman
 # =========================================
 st.set_page_config(
-    page_title="Welcome to DGrafika",
+    page_title="DGrafika Homepage",
     page_icon="💡",
     layout="wide"
 )
@@ -16,7 +16,7 @@ st.set_page_config(
 # =========================================
 # 🎨 Header
 # =========================================
-st.title("💡 DataGrafika Portfolio")
+st.title("💡 Welcome To DataGrafika")
 st.write("Explore AI, Data Science, and Visualization Projects 🚀")
 
 # =========================================

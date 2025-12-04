@@ -8,7 +8,7 @@ import plotly.express as px
 # ⚙️ Konfigurasi Halaman
 # =========================================
 st.set_page_config(
-    page_title="DGrafika Portfolio",
+    page_title="Welcome to DGrafika",
     page_icon="💡",
     layout="wide"
 )
